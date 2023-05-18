@@ -1,8 +1,18 @@
-title: Portfolio
-logo: /assets/img/logo.png
+title: Razgaleh
+logo: /assets/img/Fatemeh-Abbasi-Razgaleh-logos_transparent.png
+github_logo: /assets/img/Github_white.png
+linkedin_logo: /assets/img/LinkedIN_white.png
 description: Portfolio
-show_downloads: true
+# show_downloads: false
 google_analytics:
 theme: jekyll-theme-minimal
-github.owner_url: https://github.com/Razgaleh
-github.owner_name: Fatemeh Abbasi Razgaleh
+socials: true
+
+github:
+  owner_url: https://github.com/Razgaleh
+  owner_name: Fatemeh Abbasi Razgaleh
+  is_user_page: true
+  is_project_page: false
+
+linkedin:
+  owner_url: https://www.linkedin.com/in/razgaleh/
