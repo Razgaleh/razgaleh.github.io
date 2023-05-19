@@ -24,28 +24,28 @@
         
 
         {% if site.logo %}
-          <h3><i class="fa-sharp fa-solid fa-terminal fa-xl" style="color: #c89093;"></i></h3>
+          <h3><i class="fa-sharp fa-solid fa-terminal fa-bounce fa-xl"></i></h3>
           <img src="{{site.logo | relative_url}}" alt="Logo" />
         {% endif %}
 
         <!-- <h1>{{ site.description | default: site.github.repository_name }}</h1> -->
         <h1><a href="{{ site.github.repository_name }}">{{ site.description | default: site.github.repository_name }}</a></h1>
         
-        {% if site.github.is_project_page %}
+        <!-- {% if site.github.is_project_page %}
         <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
-        {% endif %}
+        {% endif %} -->
 
         <!-- {% if site.github.is_user_page %}
         <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
         {% endif %} -->
-        <!-- {% if site.github.is_user_page %}
+        {% if site.github.is_user_page %}
           {% if site.socials %}
           <ul class="socials">
             <li><a href="{{ site.github.owner_url }}"> <strong> <i class="fa-brands fa-github fa-2xl" ></i></strong></a></li>
             <li><a href="{{ site.linkedin.owner_url }}"><strong><i class="fa-brands fa-linkedin-in fa-2xl"></i></strong></a></li>
           </ul>
           {% endif %}
-        {% endif %} -->
+        {% endif %}
 
         <!-- {% if site.show_downloads %}
         <ul class="downloads">
@@ -56,7 +56,131 @@
         {% endif %} -->
       </header>
       <section>
+      <div id="projects">
+        <hr>
+        <label for="item-01" class="toggle"><h1><center>Projects</center></h1></label>
+        <input type="checkbox" name="one" id="item-01" class="hide-input">
 
+        <div class="toggle-h1">
+          <label for="item-02" class="toggle"><h2>SmartHome App</h2></label>
+          <input type="checkbox" name="two" id="item-02" class="hide-input">
+          <div class="toggle-h2">
+            <p>Smart Device Database Management Web App
+            Express &amp; Node.js
+            SQL<br>Back-end</p>
+            <!-- <i class="fa-house" style="color: #f4b1c1;"></i>  -->
+            <p><a href="https://drive.google.com/file/d/1AtOi36HshWupw7mxQvmP2V1ljjzLsW-2/view?usp=sharing">Demo</a></p>
+          </div>
+
+          <label for="item-03" class="toggle"><h2>OttoDeck DJ App Audio Player &amp; Mixer Application</h2></label>
+          <input type="checkbox" name="three" id="item-03" class="hide-input">
+          <div class="toggle-h2">
+            <p>C++
+            Object Oriented Programming
+            <a href="https://drive.google.com/file/d/1d-NQxDofOhMy3EIuCUY4QHEZy-jc8-1/view?usp=sharing">Demo</a></p>
+          </div>
+
+          <label for="item-04" class="toggle"><h2>WeStudy App</h2></label>
+          <input type="checkbox" name="four" id="item-04" class="hide-input">
+          <div class="toggle-h2">
+            <p>Study Partner Finder App</p>
+            <p>Team Work
+            Node.js
+            Agile Software Development
+          
+          <a href="https://drive.google.com/file/d/1G39Klq-7N939JJqDaUaijWner4oMcmQ/view?usp=sharelink">Demo</a></p>
+          </div>
+  
+          <label for="item-05" class="toggle"><h2>Cryptocurrency Exchange Command Line Program</h2></label>
+          <input type="checkbox" name="five" id="item-05" class="hide-input">
+          <div class="toggle-h2">
+            <p>C++
+            <a href="https://drive.google.com/file/d/1CSDV9h8TdTzhIlmUS65sBfEUFrwFY6g/view?usp=sharelink">Demo</a></p>
+          </div>
+    
+          <label for="item-06" class="toggle"><h2>Chess Club Newsletter Website</h2></label>
+          <input type="checkbox" name="six" id="item-06" class="hide-input">
+          <div class="toggle-h2">
+            <p>JavaScript
+            CSS
+            HTML
+            Front-end
+            <a href="https://drive.google.com/file/d/1GKhGCEMUTVoq9Y1aAoS0NcX-E3Mb35/view?usp=sharelink">Demo</a></p>
+          </div>
+
+          <label for="item-07" class="toggle"><h2>2D Platformer Video Game</h2></label>
+          <input type="checkbox" name="seven" id="item-07" class="hide-input">
+          <div class="toggle-h2">
+            <p>JavaScript
+            p5.js
+            <a href="https://drive.google.com/file/d/1H7FVDq1sNKyY7YTb9fYfnw0npKfRi7F-/view?usp=sharelink">Demo</a></p>
+          </div>
+
+    
+          <label for="item-08" class="toggle"><h2>Hf Rod Ablation Source Picomotor</h2></label>
+          <input type="checkbox" name="eight" id="item-08" class="hide-input">
+          <div class="toggle-h2">
+            <p>C
+            Arduino
+            <a href="https://docs.google.com/presentation/d/1C-E-mXjM-Nj3RjFStN2Yl0k3T-hdBy7/edit?usp=sharing&amp;ouid=108455844285398591572&amp;rtpof=true&amp;sd=true">Demo</a></p>
+          </div>
+        
+          <label for="item-09" class="toggle"><h2> Polarimeter </h2></label>
+          <input type="checkbox" name="nine" id="item-09" class="hide-input">
+          <div class="toggle-h2">
+            <p>MATLAB
+            Arduino
+            <a href="https://docs.google.com/presentation/d/1kGPYcU3tDFkvz2ABcRhP1DMdWKakWj4q/edit?usp=sharing&amp;ouid=108455844285398591572&amp;rtpof=true&amp;sd=true">Demo</a></p>
+          </div>
+          
+          <label for="item-010" class="toggle"><h2> Visual Display of Music </h2></label>
+          <input type="checkbox" name="ten" id="item-010" class="hide-input">
+          <div class="toggle-h2">
+            <p>Team Work
+            Electronic
+            <a href="https://docs.google.com/presentation/d/1Z0vnaYgfT2vSQzQhytnMh6xuGdLOKmO/edit?usp=sharing&amp;ouid=108455844285398591572&amp;rtpof=true&amp;sd=true">Demo</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="education">
+        <hr>
+        <label for="item-11" class="toggle"><h1><center>Education</center></h1></label>
+        <input type="checkbox" name="oneone" id="item-11" class="hide-input">
+
+        <div class="toggle-h1">
+          <label for="item-12" class="toggle"><h2>University of London</h2></label>
+          <input type="checkbox" name="onetwo" id="item-12" class="hide-input">
+          <div class="toggle-h2">
+            <p>Smart Device Database Management Web App
+            Express &amp; Node.js
+            SQL<br>Back-end</p>
+            <p><a href="https://drive.google.com/file/d/1AtOi36HshWupw7mxQvmP2V1ljjzLsW-2/view?usp=sharing">Demo</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="work">
+        <hr>
+        <label for="item-21" class="toggle"><h1><center>Work</center></h1></label>
+       
+        <input type="checkbox" name="one" id="item-21" class="hide-input">
+        <div class="toggle-h1">
+          
+          <label for="item-22" class="toggle"><h2>JILA</h2></label>
+          <input type="checkbox" name="two" id="item-22" class="hide-input">
+          <div class="toggle-h2">
+            <p>Smart Device Database Management Web App
+            Express &amp; Node.js
+            SQL<br>Back-end</p>
+            <p><a href="https://drive.google.com/file/d/1AtOi36HshWupw7mxQvmP2V1ljjzLsW-2/view?usp=sharing">Demo</a></p>
+          </div>
+      
+        </div>
+
+      </div>
+      
+      <hr>    
       {{ content }}
 
       </section>
@@ -65,14 +189,15 @@
          {% if site.github.is_user_page %} -->
         <!-- <p><small> 2023 <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></small></p>
         {% endif %} -->
-        {% if site.github.is_user_page %}
+        <!-- {% if site.github.is_user_page %}
           {% if site.socials %}
           <ul class="socials">
             <li><a href="{{ site.github.owner_url }}"> <strong> <i class="fa-brands fa-github fa-2xl" ></i></strong></a></li>
             <li><a href="{{ site.linkedin.owner_url }}"><strong><i class="fa-brands fa-linkedin-in fa-2xl"></i></strong></a></li>
           </ul>
           {% endif %}
-        {% endif %}
+        {% endif %} -->
+        <p><center> 2023 </center></p>
 
       </footer>
     </div>

@@ -24,4 +24,12 @@
         document.addEventListener("touchstart", gestureStart, false);
         document.addEventListener("touchend", gestureEnd, false);
     }
+
+  
+
 })(document);
+
+
+
+
+

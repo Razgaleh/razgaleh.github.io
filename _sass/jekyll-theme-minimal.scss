@@ -38,17 +38,24 @@ h3 {
 }
 
 h1 {
-  color: #c89093;
+  color: #ffffff;
   font-size: 32px;
+}
+
+h1:hover,
+h1:focus  {
+  color: #f4b1c1;
 }
 
 h2 {
   font-family: 'Bodoni Moda', serif;
   color: #ffffff;
-
 }
 
-
+h2:hover,
+h2:focus {
+  color: #f4b1c1;
+}
 
 h3,
 h4,
@@ -134,6 +141,56 @@ img {
   max-width: 100%;
 }
 
+.toggle-h1 {
+  padding: 2rem;
+  height: auto;
+  background: #000000;
+  transition: all 0.2s ease;
+  opacity: 1;
+  margin-top: 1rem;
+  overflow: scroll;
+}
+
+.toggle-h2 {
+  padding: 0;
+  height: auto;
+  background: #000000;
+  transition: all 0.2s ease;
+  opacity: 1;
+  margin-top: 1rem;
+  overflow: hidden;
+  color: #f4b1c1;
+}
+
+#projects{
+  margin-top:20px;
+}
+input[type='checkbox'].hide-input:not(:checked) + .toggle-h1 {
+  height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+input[type='checkbox'].hide-input:not(:checked) + .toggle-h2 {
+  height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+input.hide-input {
+  position: absolute;
+  left: -999em;
+}
+
+label.toggle {
+  cursor: pointer;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  user-select: none;
+}
+
 kbd {
   background-color: #fafbfc;
   border: 1px solid #c6cbd1;
@@ -156,7 +213,6 @@ header {
   background-color: #000000;
 }
 
-
 header h1 {
   text-align: center;
   justify-content: center;
@@ -164,11 +220,16 @@ header h1 {
   margin: 50px 0px;
 }
 
-header h3{
+header h3 {
   text-align: center;
   justify-content: center;
   align-items: center;
   margin: 25px 0px;
+}
+
+header h3:hover,
+header h3:focus {
+  color: #f4b1c1;
 }
 
 header a {
