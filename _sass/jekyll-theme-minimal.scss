@@ -1,13 +1,11 @@
-
 @import 'fonts';
 @import 'rouge-github';
-
 
 body {
   background-color: #000000;
   padding: 50px;
   // font: 14px/1.5 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Raleway', sans-serif;
   color: #ffffff;
   font-weight: 400;
 }
@@ -18,6 +16,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: 'Playfair Display SC', serif;
   color: #ffffff;
   margin: 0 0 20px;
 }
@@ -39,12 +38,17 @@ h3 {
 }
 
 h1 {
+  color: #c89093;
   font-size: 32px;
 }
 
 h2 {
+  font-family: 'Bodoni Moda', serif;
   color: #ffffff;
+
 }
+
+
 
 h3,
 h4,
@@ -53,6 +57,9 @@ h6 {
   color: #ffffff;
 }
 
+p {
+  color: #bfbfbf;
+}
 a {
   color: #ffffff;
   text-decoration: underline;
@@ -146,8 +153,9 @@ header {
   float: left;
   position: fixed;
   -webkit-font-smoothing: subpixel-antialiased;
-  
+  background-color: #000000;
 }
+
 
 header h1 {
   text-align: center;
@@ -156,11 +164,18 @@ header h1 {
   margin: 50px 0px;
 }
 
+header h3{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 0px;
+}
+
 header a {
   text-decoration: none;
 }
 
-.socials{
+.socials {
   display: grid;
   // justify-content: center;
   // align-items: center;
@@ -168,17 +183,15 @@ header a {
   justify-content: center;
   column-gap: 50px;
   margin-right: 40px;
-  
 }
 ul.socials {
   list-style: none;
 }
 
 .socials li {
- 
-   max-width: 100%;
-   transform: scale(1.75);
-   padding: 20px 0px;
+  max-width: 100%;
+  transform: scale(1.75);
+  padding: 20px 0px;
   margin: 10px 0px;
   // padding: 0px 0px 0px 10px;
 }
@@ -186,7 +199,6 @@ ul.socials {
 .socials i:focus {
   color: #f4b1c1;
 }
-
 
 .socials img:hover,
 .socials img:focus {
@@ -278,6 +290,7 @@ footer {
   position: fixed;
   bottom: 50px;
   -webkit-font-smoothing: subpixel-antialiased;
+  background-color: #000000;
 }
 
 footer a {
@@ -299,8 +312,7 @@ footer a {
   }
 
   header {
-     padding: 0 150px;
-    
+    padding: 0 150px;
   }
 
   section {
@@ -319,7 +331,6 @@ footer a {
     right: 50px;
     top: 52px;
   }
-
 }
 
 @media print, screen and (max-width: 720px) {
