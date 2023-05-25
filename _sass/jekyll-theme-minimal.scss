@@ -140,7 +140,7 @@ img {
   max-width: 100%;
 }
 
-.toggle-hello {
+.toggle-welcome {
   padding: 2rem;
   height: auto;
   background: #000000;
@@ -148,7 +148,12 @@ img {
   opacity: 1;
   margin-top: 1rem;
   overflow: scroll;
+  text-align:justify;
+  line-height: 1.5;
+  font-size: 13pt;
 }
+
+
 
 .toggle-h1 {
   padding: 2rem;
@@ -175,6 +180,7 @@ img {
 #welcome{
   margin-top:30px;
 }
+
 
 input[type='checkbox'].hide-input:not(:checked) + .toggle-h1 {
   height: 0;
