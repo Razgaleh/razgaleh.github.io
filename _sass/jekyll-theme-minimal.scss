@@ -65,18 +65,17 @@ h6 {
 }
 
 p {
-  color: #bfbfbf;
-}
-a {
   color: #ffffff;
-  text-decoration: underline;
+  padding: 0px 20px;
+}
+a{
+  color: #ffffff;
+}
+p a {
+  color: #f4b1c1;
+  text-decoration: none;
 }
 
-a:hover,
-a:focus {
-  color: #f4b1c1;
-  // font-weight: bold;
-}
 
 a small {
   font-size: 11px;
@@ -141,6 +140,16 @@ img {
   max-width: 100%;
 }
 
+.toggle-hello {
+  padding: 2rem;
+  height: auto;
+  background: #000000;
+  transition: all 0.2s ease;
+  opacity: 1;
+  margin-top: 1rem;
+  overflow: scroll;
+}
+
 .toggle-h1 {
   padding: 2rem;
   height: auto;
@@ -162,9 +171,11 @@ img {
   color: #f4b1c1;
 }
 
-#projects{
-  margin-top:20px;
+
+#welcome{
+  margin-top:30px;
 }
+
 input[type='checkbox'].hide-input:not(:checked) + .toggle-h1 {
   height: 0;
   opacity: 0;
@@ -178,6 +189,15 @@ input[type='checkbox'].hide-input:not(:checked) + .toggle-h2 {
   padding-top: 0;
   padding-bottom: 0;
 }
+
+input[type='checkbox'].hide-input:checked + .toggle-welcome {
+  height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
 
 input.hide-input {
   position: absolute;
