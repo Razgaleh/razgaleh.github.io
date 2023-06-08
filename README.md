@@ -7,7 +7,7 @@ I used the the minimal theme and made my own personal changes to it:
 
 
 
-Please give credit and feel free to ask for a pull request. 
+Please give credit for the content of the wesbite. 
 
 ### Previewing the theme locally
 
