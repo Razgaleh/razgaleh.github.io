@@ -3,7 +3,7 @@
 I used the the minimal theme and made my own personal changes to it: 
 
 ![image](https://github.com/Razgaleh/razgaleh.github.io/assets/62572736/657fec01-27cb-44de-8c52-398155ba07c0)
-![image](https://github.com/Razgaleh/razgaleh.github.io/assets/62572736/8e9f51a9-effd-41b9-a434-81292f5a6020)
+![image](https://github.com/Razgaleh/razgaleh.github.io/assets/62572736/718272dd-c7ab-4902-9a5d-0505a4a48e4b)
 
 
 
