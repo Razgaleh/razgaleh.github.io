@@ -2,7 +2,9 @@
 
 I used the the minimal theme and made my own personal changes to it: 
 
-![image](https://github.com/Razgaleh/razgaleh.github.io/assets/62572736/af7b1f6b-8659-47b4-a732-273530c54c1a)
+![image](https://github.com/Razgaleh/razgaleh.github.io/assets/62572736/657fec01-27cb-44de-8c52-398155ba07c0)
+![image](https://github.com/Razgaleh/razgaleh.github.io/assets/62572736/8e9f51a9-effd-41b9-a434-81292f5a6020)
+
 
 
 Please give credit and feel free to ask for a pull request. 
