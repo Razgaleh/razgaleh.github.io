@@ -1,6 +1,41 @@
 @import 'fonts';
 @import 'rouge-github';
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.toggle-welcome::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.toggle-welcome {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.toggle-h1::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.toggle-h1{
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.page::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.page{
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+
+
 body {
   background-color: #000000;
   padding: 50px;
@@ -8,6 +43,7 @@ body {
   font-family: 'Raleway', sans-serif;
   color: #ffffff;
   font-weight: 400;
+  
 }
 
 h1,
@@ -424,6 +460,7 @@ footer a {
 @media print, screen and (max-width: 720px) {
   body {
     word-wrap: break-word;
+    
   }
 
   header {
@@ -444,6 +481,7 @@ footer a {
 @media print, screen and (max-width: 480px) {
   body {
     padding: 15px;
+    
   }
 
   .downloads {
@@ -461,5 +499,6 @@ footer a {
     padding: 0.4in;
     font-size: 12pt;
     color: #444;
+
   }
 }
