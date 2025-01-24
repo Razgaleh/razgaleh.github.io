@@ -166,7 +166,7 @@ export const projects = {
       summary:
         "Retrieval Augmented Generation (RAG) with LangChain and Streamlit, runnable via NVIDIA NIMs or locally.",
       preview: "https://github.com/Razgaleh/Arrow-RAG-Demo",
-      techStack: ["LangChain", "NVIDIA NIMs", "Python", "Streamlit",],
+      techStack: ["RAG", "Gen AI", "LangChain", "NVIDIA NIMs", "Python", "Streamlit",],
     },
     {
       projectName: "Deep Learning in Particle Physics",

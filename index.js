@@ -379,9 +379,14 @@ skillLinks.forEach(link => {
       p.className = "project-description";
       const html = items[i].content;
       const [, doc] = /<p>(.*?)<\/p>/g.exec(html) || [];
-      p.innerHTML = doc;
+      
+      // Extract first sentence by splitting at period, question mark, or exclamation mark
+      const firstSentence = doc ? doc.split(/[.!?](?:\s|$)/)[0] + '.' : '';
+      p.innerHTML = firstSentence;
   
       const divSpan = document.createElement("div");
+      divSpan.className = "tags-container";
+      divSpan.id = "blog-tags-container";  // Add this unique ID
       for (const category of items[i].categories) {
         const span = document.createElement("span");
         span.className = "badge badge-secondary";
