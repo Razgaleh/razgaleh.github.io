@@ -468,7 +468,7 @@ figure figcaption {
 .footer-socials {
 	list-style-type: none;
 	padding: 0;
-	display: block;  /* Ensure it’s a block layout for vertical list */
+	display: block;  /* Ensure it's a block layout for vertical list */
 	margin: 0;
   }
   
@@ -766,8 +766,49 @@ body.offcanvas .colorlib-nav-toggle {
 		display: flex;
 		flex-direction: column;
 	}
-}
 
+	 /* Target the entire blog post container */
+	 .project-card {
+        width: 100%;
+        overflow-x: hidden;  /* Prevent horizontal scroll on the card itself */
+    }
+
+    /* Target the content area */
+    .resume-content {
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Target the description and tags area */
+    .sub-heading {
+        width: 100%;
+        overflow-x: visible;
+    }
+
+    /* Force the tags container to be full width */
+    #blog-tags-container {
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 0;
+        margin: 0;
+        gap: 8px;
+    }
+
+    /* Style individual badges */
+    .badge.badge-secondary {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        margin-right: 8px;
+    }
+
+    /* Ensure the right div doesn't constrain width */
+    #right-div {
+        width: 100%;
+        padding: 0;
+    }
+}
 
 #colorlib-footer2 {
 	background: black;
@@ -2360,6 +2401,55 @@ span {
 		vertical-align: middle
 	  }
   }
+
+@media screen and (max-width: 768px) {
+    /* Center the publish date */
+    .publish-date {
+        text-align: center;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* Center the tags container */
+    #blog-tags-container {
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 0;
+        margin: 0;
+        gap: 8px;
+        justify-content: center; /* Center the tags */
+    }
+
+    /* Keep other mobile styles */
+    .project-card {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .resume-content {
+        width: 100%;
+        padding: 0;
+    }
+
+    .sub-heading {
+        width: 100%;
+        overflow-x: visible;
+        text-align: center; /* Center the content */
+    }
+
+    .badge.badge-secondary {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        margin-right: 8px;
+    }
+
+    #right-div {
+        width: 100%;
+        padding: 0;
+    }
+}
 
 @media print {
 	.no-print, .no-print * { display: none !important; }
