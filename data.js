@@ -161,6 +161,14 @@ export const skills = [
 export const projects = {
   mlaiProjects: [
     {
+      projectName: "Arrow RAG Assistant",
+      image: "images/arrow-ai-assistant.png",
+      summary:
+        "Retrieval Augmented Generation (RAG) with LangChain and Streamlit, runnable via NVIDIA NIMs or locally.",
+      preview: "https://github.com/Razgaleh/Arrow-RAG-Demo",
+      techStack: ["LangChain", "NVIDIA NIMs", "Python", "Streamlit",],
+    },
+    {
       projectName: "Deep Learning in Particle Physics",
       image: "images/neural-networks.webp",
       summary:
@@ -427,8 +435,18 @@ export const certs = [
 ];
 export const experience = [
   {
-    title: "ML & AI Technical Solutions Associate",
-    duration: "Jan. 2024 - Present",
+    title: "AI Technical Solutions Engineer",
+    duration: "Jan. 2025 - Present",
+    subtitle: "Arrow Electronics",
+    details: [
+    ],
+
+    tags: [],
+    icon: "code",
+  },
+  {
+    title: "AI Technical Solutions Associate",
+    duration: "Jan. 2024 - Dec. 2024",
     subtitle: "Arrow Electronics",
     details: ["Developed a customizable RAG app using LangChain from scratch for specialized Arrow AI Assistants",
       "Deployed locally hosted RAG apps on the NVIDIA DGX platform for Arrow AI Assistants",
@@ -555,7 +573,7 @@ export const footer = [
   {
     label: "copyright-text",
     data: [
-      "2024",
+      "2025",
     ],
   },
 ];
