@@ -50,24 +50,28 @@
       $("#colorlib-counter").waypoint(
         function (direction) {
           if (direction === "down" && !$(this.element).hasClass("animated")) {
-            setTimeout(counter, 400);
+            setTimeout(counter, 100); // Reduced from 400ms to 100ms
             $(this.element).addClass("animated");
           }
         },
-        { offset: "90%" }
+        { offset: "80%" } // Reduced from 90% to 80% for earlier triggering
       );
     }
   };
 
-  // Animations
+  // Animations with improved performance
   var contentWayPoint = function () {
     var i = 0;
+    var animatedElements = new Set(); // Track animated elements to prevent re-animation
+    
     $(".animate-box").waypoint(
       function (direction) {
-        if (direction === "down" && !$(this.element).hasClass("animated")) {
+        var element = this.element;
+        if (direction === "down" && !$(element).hasClass("animated") && !animatedElements.has(element)) {
           i++;
+          animatedElements.add(element);
 
-          $(this.element).addClass("item-animate");
+          $(element).addClass("item-animate");
           setTimeout(function () {
             $("body .animate-box.item-animate").each(function (k) {
               var el = $(this);
@@ -86,14 +90,14 @@
 
                   el.removeClass("item-animate");
                 },
-                k * 200,
+                k * 30, // Further reduced to 30ms for even faster loading
                 "easeInOutExpo"
               );
             });
-          }, 100);
+          }, 25); // Further reduced to 25ms
         }
       },
-      { offset: "85%" }
+      { offset: "70%" } // Further reduced to 70% for even earlier triggering
     );
   };
 
@@ -124,10 +128,20 @@
       }
     });
 
-    $(window).scroll(function () {
+    // Optimized scroll handler using requestAnimationFrame
+    var ticking = false;
+    function updateOnScroll() {
       if ($("body").hasClass("offcanvas")) {
         $("body").removeClass("offcanvas");
         $(".js-colorlib-nav-toggle").removeClass("active");
+      }
+      ticking = false;
+    }
+    
+    $(window).scroll(function () {
+      if (!ticking) {
+        requestAnimationFrame(updateOnScroll);
+        ticking = true;
       }
     });
   };
@@ -142,7 +156,7 @@
           {
             scrollTop: $('[data-section="' + section + '"]').offset().top - 55,
           },
-          500
+          200
         );
       }
 
@@ -179,7 +193,7 @@
         }
       },
       {
-        offset: "150px",
+        offset: "100px", // Reduced from 150px for faster response
       }
     );
 
@@ -191,7 +205,7 @@
       },
       {
         offset: function () {
-          return -$(this.element).height() + 155;
+          return -$(this.element).height() + 100; // Reduced from 155 for faster response
         },
       }
     );
@@ -276,10 +290,10 @@ var Accordion = function (el, multiple) {
   // Evento
   links.on("click", { el: this.el, multiple: this.multiple }, this.dropdown);
 
-  // Open the first section by default
-  var firstItem = this.el.find("li:first-child");
-  firstItem.addClass("open");
-  firstItem.find(".submenu").show();
+  // Open the first section by default - DISABLED
+  // var firstItem = this.el.find("li:first-child");
+  // firstItem.addClass("open");
+  // firstItem.find(".submenu").show();
 };
 
 Accordion.prototype.dropdown = function (e) {
