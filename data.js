@@ -9,41 +9,42 @@ export const bio = [
 
 export const skills = [
   {
-    title: "RAG Frameworks",
+    title: "AI Frameworks",
     skillName: "LangChain",
     color: "1",
     percentage: "60",
-  },{
-    title: "RAG Frameworks",
-    skillName: "LlamaIndex",
-    color: "2",
-    percentage: "40",
   }, {
-    title: "ML Frameworks",
+    title: "AI Frameworks",
     skillName: "TensorFlow",
     color: "7",
     percentage: "70",
   },{
-    title: "ML Frameworks",
+    title: "AI Frameworks",
     skillName: "Keras",
     color: "4",
     percentage: "70",
   },  {
-    title: "ML Frameworks",
+    title: "AI Frameworks",
     skillName: "Scikit-Learn",
     color: "5",
     percentage: "70",
   }, {
-    title: "ML Frameworks",
+    title: "AI Frameworks",
     skillName: "PyTorch",
     color: "6",
     percentage: "20",
   },{
-    title: "ML Frameworks",
+    title: "AI Frameworks",
     skillName: "JAX",
     color: "7",
     percentage: "10",
   },{
+    title: "AI Frameworks",
+    skillName: "LlamaIndex",
+    color: "2",
+    percentage: "10",
+  },
+  {
     title: "MLOps Tools",
     skillName: "Docker",
     color: "7",
@@ -439,6 +440,17 @@ export const experience = [
     duration: "Jan. 2025 - Present",
     subtitle: "Arrow Electronics",
     details: [
+"Currently developing NeMo Curator Demo and integrating it into Fine-tuning Demo",
+// "Collaborating with the Arrow internal Data Science team to create an Agentic AI SKU Auto-Classifier",
+"Partnering with WWT & N50 Project to develop a multi-lingual AI Tutor to enable students",
+"Developed PEFT demo using NVIDIA NeMo to showcase LoRA & LLM finetuning techniques",
+"Deployed Elastic Search RAG demo and OPEA ChatQnA demos for partner engagement",
+"Collaborating across Data/AI team on the deployment of the NVIDIA ACE Digital Human",
+"Partnering with the NVIDIA AI Workbench team on AI projects such as PDF-to-Podcast",
+"Designing and developing multi-vendor AI solutions and POCs with cross-functional teams",
+"Held webinars to enable partners on AI solutions, focusing on LLM Agents and Finetuning",
+"Co-led and designed biweekly AI Developer Essentials sessions to enable engineering team",
+"Enabling Arrow partners in AI by understanding their unique AI needs and showcasing AI demos",
     ],
 
     tags: [],
@@ -448,9 +460,9 @@ export const experience = [
     title: "AI Technical Solutions Associate",
     duration: "Jan. 2024 - Dec. 2024",
     subtitle: "Arrow Electronics",
-    details: ["Developed a customizable RAG app using LangChain from scratch for specialized Arrow AI Assistants",
+    details: ["Developed a customizable RAG app using LangChain from scratch for specialized AI Assistants",
       "Deployed locally hosted RAG apps on the NVIDIA DGX platform for Arrow AI Assistants",
-      "Developed NVIDIA-focused ML & AI demos using NVIDIA NIMs to enhance business development",
+      "Developed NVIDIA-focused AI demos using NVIDIA NIMs to enhance business development",
       "Engaged with partners to identify and address their AI needs and challenges",
       "Presented AI demos at Arrow Technology Summit (ATS) to share insights into AI technologies",
       "Assessed potential AI company partnerships in supplier discovery meetings",
@@ -485,7 +497,17 @@ export const experience = [
 
 ];
 
-export const education = [
+export const education = [  
+  {
+    title: "MS in Artificial Intelligence",
+    duration: "2025 - Current",
+    subtitle: "UT Austin",
+    details: [ "In Progress"],
+    tags: [
+      "Deep Learning",
+    ],
+    icon: "graduation-cap",
+  },
   {
     title: "BS in Computer Science with Specialization in ML & AI ",
     duration: "2020 - 2023",
