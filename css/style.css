@@ -5233,13 +5233,16 @@ span {
 .blogs-container {
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
+}
+
+.blogs-container ul {
+	margin-bottom: 2rem;
 }
 
 .readmore-container {
 	display: flex;
-	justify-content: center;
-	margin-top: 2rem;
+	justify-content: flex-start;
+	margin-top: 20px;
 }
 
 /* Contact Section Styling */
