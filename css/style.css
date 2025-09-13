@@ -4202,6 +4202,38 @@ section[data-section] h1:hover {
 		justify-content: center;
 	}
 	
+	/* Skills section mobile fixes */
+	.colorlib-skills .col-md-6 {
+		width: 100%;
+		margin-bottom: 1.5rem;
+	}
+	
+	.colorlib-skills .progress-wrap {
+		margin-bottom: 1rem;
+	}
+	
+	.colorlib-skills .section-title {
+		font-size: 1.3rem;
+		margin-bottom: 1rem;
+	}
+	
+	.colorlib-skills .filter-tabs {
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.5rem;
+		margin-bottom: 2rem;
+	}
+	
+	/* Ensure skills are visible on mobile */
+	.colorlib-skills .animate-box {
+		opacity: 1 !important;
+		visibility: visible !important;
+	}
+	
+	.colorlib-skills .progress-bar {
+		height: 8px;
+	}
+	
 	.projects-container {
 		grid-template-columns: 1fr;
 		gap: 1.5rem;
@@ -4244,6 +4276,38 @@ section[data-section] h1:hover {
 		width: 180px;
 		padding: 0.6rem 1rem;
 		font-size: 0.9rem;
+	}
+	
+	/* Skills section mobile fixes */
+	.colorlib-skills .col-md-6 {
+		width: 100%;
+		margin-bottom: 1.5rem;
+	}
+	
+	.colorlib-skills .progress-wrap {
+		margin-bottom: 1rem;
+	}
+	
+	.colorlib-skills .section-title {
+		font-size: 1.2rem;
+		margin-bottom: 1rem;
+	}
+	
+	.colorlib-skills .filter-tabs {
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.5rem;
+		margin-bottom: 2rem;
+	}
+	
+	/* Ensure skills are visible on mobile */
+	.colorlib-skills .animate-box {
+		opacity: 1 !important;
+		visibility: visible !important;
+	}
+	
+	.colorlib-skills .progress-bar {
+		height: 6px;
 	}
 }
 
