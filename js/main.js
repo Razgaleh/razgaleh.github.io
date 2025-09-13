@@ -128,22 +128,7 @@
       }
     });
 
-    // Optimized scroll handler using requestAnimationFrame
-    var ticking = false;
-    function updateOnScroll() {
-      if ($("body").hasClass("offcanvas")) {
-        $("body").removeClass("offcanvas");
-        $(".js-colorlib-nav-toggle").removeClass("active");
-      }
-      ticking = false;
-    }
-    
-    $(window).scroll(function () {
-      if (!ticking) {
-        requestAnimationFrame(updateOnScroll);
-        ticking = true;
-      }
-    });
+    // Scroll handler removed - mobile menu stays open when scrolling
   };
 
   var clickMenu = function () {
@@ -156,7 +141,14 @@
           {
             scrollTop: $('[data-section="' + section + '"]').offset().top - 55,
           },
-          200
+          {
+            duration: 300, // Slightly longer for smoother feel
+            easing: "swing", // Smooth easing
+            complete: function() {
+              // Ensure we're at the exact position
+              $("html, body").scrollTop($('[data-section="' + section + '"]').offset().top - 55);
+            }
+          }
         );
       }
 
@@ -164,6 +156,31 @@
         navbar.removeClass("in");
         navbar.attr("aria-expanded", "false");
         $(".js-colorlib-nav-toggle").removeClass("active");
+      }
+
+      event.preventDefault();
+      return false;
+    });
+  };
+
+  // General navigation handler for all elements with data-nav-section
+  var generalNavigation = function () {
+    $('a[data-nav-section]').click(function (event) {
+      var section = $(this).data("nav-section");
+      
+      if ($('[data-section="' + section + '"]').length) {
+        $("html, body").animate(
+          {
+            scrollTop: $('[data-section="' + section + '"]').offset().top - 55,
+          },
+          {
+            duration: 300,
+            easing: "swing",
+            complete: function() {
+              $("html, body").scrollTop($('[data-section="' + section + '"]').offset().top - 55);
+            }
+          }
+        );
       }
 
       event.preventDefault();
@@ -190,6 +207,8 @@
       function (direction) {
         if (direction === "down") {
           navActive($(this.element).data("section"));
+          // Add fade-in effect to section
+          $(this.element).addClass("fade-in");
         }
       },
       {
@@ -201,6 +220,8 @@
       function (direction) {
         if (direction === "up") {
           navActive($(this.element).data("section"));
+          // Add fade-in effect to section
+          $(this.element).addClass("fade-in");
         }
       },
       {
@@ -209,6 +230,14 @@
         },
       }
     );
+  };
+
+  // Fade in first section immediately
+  var fadeInFirstSection = function () {
+    var $firstSection = $("section[data-section]").first();
+    if ($firstSection.length) {
+      $firstSection.addClass("fade-in");
+    }
   };
 
   var sliderMain = function () {
@@ -238,28 +267,34 @@
   var stickyFunction = function () {
     var h = $(".image-content").outerHeight();
 
-    if ($(window).width() <= 992) {
-      $("#sticky_item").trigger("sticky_kit:detach");
-    } else {
-      $(".sticky-parent").removeClass("stick-detach");
-      $("#sticky_item").trigger("sticky_kit:detach");
-      $("#sticky_item").trigger("sticky_kit:unstick");
-    }
-
-    $(window).resize(function () {
-      var h = $(".image-content").outerHeight();
-      $(".sticky-parent").css("height", h);
-
+    // Check if StickyKit is available
+    if (typeof $.fn.stick_in_parent === 'function') {
       if ($(window).width() <= 992) {
         $("#sticky_item").trigger("sticky_kit:detach");
       } else {
         $(".sticky-parent").removeClass("stick-detach");
         $("#sticky_item").trigger("sticky_kit:detach");
         $("#sticky_item").trigger("sticky_kit:unstick");
-
-        $("#sticky_item").stick_in_parent();
       }
-    });
+
+      $(window).resize(function () {
+        var h = $(".image-content").outerHeight();
+        $(".sticky-parent").css("height", h);
+
+        if ($(window).width() <= 992) {
+          $("#sticky_item").trigger("sticky_kit:detach");
+        } else {
+          $(".sticky-parent").removeClass("stick-detach");
+          $("#sticky_item").trigger("sticky_kit:detach");
+          $("#sticky_item").trigger("sticky_kit:unstick");
+
+          $("#sticky_item").stick_in_parent();
+        }
+      });
+    } else {
+      // Fallback: just set the height without sticky functionality
+      console.log("StickyKit not available, using fallback layout");
+    }
 
     $(".sticky-parent").css("height", h);
   };
@@ -273,7 +308,9 @@
     burgerMenu();
 
     clickMenu();
+    generalNavigation();
     navigationSection();
+    fadeInFirstSection(); // Fade in first section immediately
 
     mobileMenuOutsideClick();
     sliderMain();

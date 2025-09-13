@@ -3,17 +3,30 @@
 <head>
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title> Razgaleh | Portfolio</title>
+   <title>Fatemeh Abbasi Razgaleh | AI Technical Solutions Engineer | Portfolio</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="description" content="Razgaleh | Portfolio" />
+   <meta name="description" content="AI Technical Solutions Engineer at Arrow Electronics. Expert in Machine Learning, RAG Frameworks, and Cloud Platforms. Explore my projects and professional journey." />
    <meta name="keywords"
-      content="portfolio,website,personal website,github,projects,computer science, engineering,artificial intelligence, machine learning, physics" />
-   <meta name="author" content="fatemeh abbasi razgaleh" />
+      content="AI engineer, machine learning, RAG frameworks, MLOps, cloud platforms, Python, technical solutions, portfolio, artificial intelligence, data science, Arrow Electronics" />
+   <meta name="author" content="Fatemeh Abbasi Razgaleh" />
+   <meta name="robots" content="index, follow">
+   <meta property="og:title" content="Fatemeh Abbasi Razgaleh | AI Technical Solutions Engineer">
+   <meta property="og:description" content="AI Technical Solutions Engineer at Arrow Electronics. Expert in Machine Learning, RAG Frameworks, and Cloud Platforms.">
+   <meta property="og:type" content="website">
+   <meta property="og:url" content="https://razgaleh.github.io">
+   <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:title" content="Fatemeh Abbasi Razgaleh | AI Technical Solutions Engineer">
+   <meta name="twitter:description" content="AI Technical Solutions Engineer at Arrow Electronics. Expert in Machine Learning, RAG Frameworks, and Cloud Platforms.">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="icon" type="image/svg" href="/images/favicon.svg">
+   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🤖%3C/text%3E%3C/svg%3E">
+   <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🤖%3C/text%3E%3C/svg%3E">
    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda&family=Playfair+Display+SC&family=Raleway:wght@100;300&display=swap" rel="stylesheet"> 
    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Raleway&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="css/animate.css">
    <link rel="stylesheet" href="css/bootstrap.css">
    <link rel="stylesheet" href="css/style.css">
@@ -21,9 +34,226 @@
    <script src="js/modernizr-2.6.2.min.js"></script>
    <script type="module" src="index.js"></script>
    <script src="js/profile-card.js"></script>
+   
+   <!-- Enhanced Portfolio JavaScript -->
+   <script>
+      // Loading Screen
+      window.addEventListener('load', function() {
+         setTimeout(function() {
+            document.getElementById('loadingScreen').classList.add('hidden');
+         }, 1000);
+      });
+
+      // Scroll to Top Button - Wait for DOM to be ready
+      document.addEventListener('DOMContentLoaded', function() {
+         const scrollToTopBtn = document.getElementById('scrollToTop');
+         
+         if (scrollToTopBtn) {
+            window.addEventListener('scroll', function() {
+               if (window.pageYOffset > 300) {
+                  scrollToTopBtn.classList.add('visible');
+               } else {
+                  scrollToTopBtn.classList.remove('visible');
+               }
+            });
+
+            scrollToTopBtn.addEventListener('click', function() {
+               window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+               });
+            });
+         }
+      });
+
+      // Enhanced smooth scrolling for navigation - Wait for DOM
+      document.addEventListener('DOMContentLoaded', function() {
+         document.querySelectorAll('a[data-nav-section]').forEach(link => {
+            link.addEventListener('click', function(e) {
+               e.preventDefault();
+               const targetSection = this.getAttribute('data-nav-section');
+               const targetElement = document.querySelector(`[data-section="${targetSection}"]`);
+               
+               if (targetElement) {
+                  const offsetTop = targetElement.offsetTop - 60;
+                  window.scrollTo({
+                     top: offsetTop,
+                     behavior: 'smooth'
+                  });
+               }
+            });
+         });
+      });
+
+      // Add typing animation to About section
+      function typeWriter(element, text, speed = 50) {
+         let i = 0;
+         element.innerHTML = '';
+         function type() {
+            if (i < text.length) {
+               element.innerHTML += text.charAt(i);
+               i++;
+               setTimeout(type, speed);
+            }
+         }
+         type();
+      }
+
+      // Intersection Observer for animations - Wait for DOM
+      document.addEventListener('DOMContentLoaded', function() {
+         const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+         };
+
+         const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+               if (entry.isIntersecting) {
+                  entry.target.classList.add('animated');
+               }
+            });
+         }, observerOptions);
+
+         // Observe all animate-box elements
+         document.querySelectorAll('.animate-box').forEach(el => {
+            observer.observe(el);
+         });
+      });
+
+      // Wait for DOM to be ready before setting up animations
+      document.addEventListener('DOMContentLoaded', function() {
+         // Simple animated counter function
+         function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50; // 50 steps
+            const timer = setInterval(() => {
+               current += increment;
+               if (current >= target) {
+                  element.textContent = target;
+                  clearInterval(timer);
+               } else {
+                  element.textContent = Math.floor(current);
+               }
+            }, 40); // 40ms per step = 2 seconds total
+         }
+
+         // Function to start counter animations
+         function startCounterAnimations() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            console.log('Starting counter animations, found:', statNumbers.length);
+            statNumbers.forEach(stat => {
+               const target = parseInt(stat.getAttribute('data-target'));
+               if (!isNaN(target)) {
+                  animateCounter(stat, target);
+               }
+            });
+         }
+
+         // Start animations when About section is visible
+         const aboutObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+               if (entry.isIntersecting) {
+                  startTypingAnimation();
+                  
+                  // Start counter animations after a short delay
+                  setTimeout(() => {
+                     startCounterAnimations();
+                  }, 1500);
+                  
+                  aboutObserver.unobserve(entry.target);
+               }
+            });
+         }, { threshold: 0.2 });
+
+         const aboutSection = document.querySelector('[data-section="about"]');
+         if (aboutSection) {
+            aboutObserver.observe(aboutSection);
+         }
+
+         // Fallback: Start animations after a delay
+         setTimeout(() => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            if (statNumbers.length > 0) {
+               console.log('Fallback: Found stat numbers:', statNumbers.length);
+               startCounterAnimations();
+            }
+         }, 3000);
+
+      });
+
+      // Skill Badge Click Effects - Wait for DOM
+      document.addEventListener('DOMContentLoaded', function() {
+         document.querySelectorAll('.skill-badge').forEach(badge => {
+            badge.addEventListener('click', function() {
+               this.style.transform = 'scale(0.95)';
+               setTimeout(() => {
+                  this.style.transform = '';
+               }, 150);
+            });
+         });
+      });
+
+      // Enhanced typing animation
+      function startTypingAnimation() {
+         const typingElement = document.getElementById('typingText');
+         if (typingElement) {
+            const text = typingElement.textContent;
+            typingElement.textContent = '';
+            typingElement.style.borderRight = '3px solid #8B5FBF';
+            
+            let i = 0;
+            function typeChar() {
+               if (i < text.length) {
+                  typingElement.textContent += text.charAt(i);
+                  i++;
+                  setTimeout(typeChar, 100);
+               } else {
+                  // Keep cursor blinking
+                  setInterval(() => {
+                     typingElement.style.borderRight = 
+                        typingElement.style.borderRight === 'none' ? '3px solid #8B5FBF' : 'none';
+                  }, 500);
+               }
+            }
+            typeChar();
+         }
+      }
+
+
+      // Parallax effect for floating shapes with throttling
+      let ticking = false;
+      function updateParallax() {
+         const scrolled = window.pageYOffset;
+         const shapes = document.querySelectorAll('.floating-shape');
+         
+         shapes.forEach((shape, index) => {
+            const speed = 0.5 + (index * 0.2);
+            const yPos = -(scrolled * speed);
+            shape.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.1}deg)`;
+         });
+         ticking = false;
+      }
+      
+      window.addEventListener('scroll', function() {
+         if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+         }
+      });
+   </script>
 </head>
 
 <body>
+   <!-- Loading Screen -->
+   <div class="loading-screen" id="loadingScreen">
+      <div class="loading-spinner"></div>
+   </div>
+
+   <!-- Scroll to Top Button -->
+   <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+      <i class="fa fa-arrow-up"></i>
+   </button>
+
    <div id="colorlib-page">
       <div class="container-wrap">
          <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar"
@@ -41,29 +271,28 @@
                   <li><a href="https://medium.com/@razgaleh"><strong><i class="fa-brands fa-medium"></i></strong></a></li>
               </ul>
               
+              <!-- Action Buttons -->
+              <div class="sidebar-buttons">
+                  <a href="mailto:razgaleh@gmail.com?subject=Appointment Request&body=Hi Fatemeh, I would like to schedule an appointment with you." 
+                     class="btn btn-appointment" target="_blank">
+                     <i class="fa fa-calendar-check-o"></i>
+                     Make Appointment
+                  </a>
+                  <a href="Resume_Fatemeh_Abbasi_Razgaleh.pdf" class="btn btn-resume" download="Fatemeh_Abbasi_Razgaleh_Resume.pdf">
+                     <i class="fa fa-download"></i>
+                     Download Resume
+                  </a>
+              </div>
 
             </div>
-            <nav id="colorlib-main-menu" role="navigation" class="navbar" style="padding-top: 2em">
+            <nav id="colorlib-main-menu" role="navigation" class="navbar" style="padding-top: 0.5em">
                <div id="navbar" class="collapse">
                   <ul>
                       <li><a href="#" data-nav-section="about">About</a></li>
                       <li><a href="#" data-nav-section="experience">Work Experience</a></li>
-                      <li><a href="#" data-nav-section="projects">Projects</a></li>
                       <li><a href="#" data-nav-section="blogs">Blogs</a></li>
-                      <!-- Skills Section -->
-                      <li>
-                          <a href="#" id="skills-toggle" data-nav-section="skills">Skills</a>
-                          <!-- Nested subsections under Skills -->
-                          <ul id="skills-subsections">
-                           <li><a href="#" data-nav-section="ai-frameworks-skills">AI Frameworks</a></li>
-                           <li><a href="#" data-nav-section="mlops-tools-skills">MLOps Tools</a></li>
-                           <li><a href="#" data-nav-section="cloud-platforms-skills">Cloud Platforms</a></li>
-                           <li><a href="#" data-nav-section="programming-languages-skills">Programming Languages</a></li>
-                           <li><a href="#" data-nav-section="databases-skills">Databases</a></li>
-                           <li><a href="#" data-nav-section="scientific-tools-skills">Scientific Tools</a></li>
-                           <li><a href="#" data-nav-section="languages-skills">Languages</a></li>
-                          </ul>
-                        </li>
+                      <li><a href="#" data-nav-section="projects">Projects</a></li>
+                      <li><a href="#" data-nav-section="skills">Skills</a></li>
                       <li><a href="#" data-nav-section="education">Education</a></li>
                       <li><a href="#" data-nav-section="certs">Certifications</a></li>
                       <li><a href="#" data-nav-section="contact">Contact</a></li>
@@ -75,16 +304,100 @@
          <div id="colorlib-main">
             <section class="colorlib-about" data-section="about">
                <div class="colorlib-narrow-content">
-                  <div class="row animate-box" data-animate-effect="fadeInLeft">
+                  <!-- Floating Background Elements -->
+                  <div class="floating-elements">
+                     <div class="floating-shape shape-1"></div>
+                     <div class="floating-shape shape-2"></div>
+                     <div class="floating-shape shape-3"></div>
+                  </div>
+
+                  <div class="row animate-box" data-animate-effect="fadeInUp">
                      <div class="about-desc">
-                        <h1>About</h1>
-                        <div id="bio">
-                           <p>
-                              &emsp;Hello, I'm Fatemeh!<br>
-                              &emsp;I'm currently an AI Technical Solutions Engineer at Arrow Electronics!<br>
-                              &emsp;Feel free to explore the projects I've completed during my professional and academic journey.<br>
-                              &emsp;Thank you for visiting my portfolio website, and I hope you enjoy exploring my projects!
-                          </p>
+                        <h1>About Me</h1>
+                        
+                        <!-- Animated Introduction -->
+                        <div class="about-intro">
+                           <div class="intro-text">
+                              <h2 class="typing-text" id="typingText">Hello, I'm Fatemeh!</h2>
+                              <p class="subtitle">AI Technical Solutions Engineer at Arrow Electronics</p>
+                           </div>
+                        </div>
+
+                        <!-- Interactive Bio Section -->
+                        <div class="bio-container">
+                           <div class="bio-text">
+                              <p class="bio-paragraph">
+                                 I'm passionate about <span class="highlight-text">artificial intelligence</span> and 
+                                 <span class="highlight-text">machine learning</span>, with expertise in RAG frameworks, 
+                                 MLOps, and cloud platforms. I love solving complex technical challenges and 
+                                 building innovative solutions that make a real impact.
+                              </p>
+                              <p class="bio-paragraph">
+                                 When I'm not coding, you'll find me exploring the latest AI research, 
+                                 contributing to open-source projects, or sharing my knowledge through 
+                                 <span class="highlight-text">technical writing</span> and 
+                                 <span class="highlight-text">mentoring</span>.
+                              </p>
+                           </div>
+                        </div>
+
+                        <!-- Interactive Stats -->
+                        <div class="stats-container">
+                           <div class="stat-item">
+                              <div class="stat-number" data-target="4">0</div>
+                              <div class="stat-label">Years Experience +</div>
+                           </div>
+                           <div class="stat-item">
+                              <div class="stat-number" data-target="16">0</div>
+                              <div class="stat-label">Projects Completed +</div>
+                           </div>
+                           <div class="stat-item">
+                              <div class="stat-number" data-target="10">0</div>
+                              <div class="stat-label">Certifications +</div>
+                           </div>
+                        </div>
+
+                        <!-- Interactive Skill Badges -->
+                        <div class="skills-showcase">
+                           <h3>Core Expertise</h3>
+                           <div class="skill-badges">
+                              <div class="skill-badge" data-skill="AI/ML">
+                                 <i class="fa fa-brain"></i>
+                                 <span>AI/ML</span>
+                              </div>
+                              <div class="skill-badge" data-skill="MLOps">
+                                 <i class="fa fa-cogs"></i>
+                                 <span>MLOps</span>
+                              </div>
+                              <div class="skill-badge" data-skill="AI Agents">
+                                 <i class="fa fa-robot"></i>
+                                 <span>AI Agents</span>
+                              </div>
+                              <div class="skill-badge" data-skill="Cloud">
+                                 <i class="fa fa-cloud"></i>
+                                 <span>Cloud</span>
+                              </div>
+                              <div class="skill-badge" data-skill="Data Science">
+                                 <i class="fa fa-chart-line"></i>
+                                 <span>Data Science</span>
+                              </div>
+                           </div>
+                        </div>
+
+                        <!-- Call to Action -->
+                        <div class="about-cta">
+                           <p>Ready to explore my work? Let's dive into my projects and experience!</p>
+                           <div class="cta-buttons">
+                              <a href="#" data-nav-section="projects" class="cta-btn primary">
+                                 <i class="fa fa-rocket"></i>
+                                 View Projects
+                              </a>
+                              <a href="mailto:razgaleh@gmail.com?subject=Let's Connect - Portfolio Inquiry&body=Hi Fatemeh, I came across your portfolio and would love to connect with you. I'm interested in discussing potential opportunities and learning more about your work in AI and machine learning." 
+                                 class="cta-btn secondary" target="_blank">
+                                 <i class="fa fa-envelope"></i>
+                                 Get In Touch
+                              </a>
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -94,11 +407,12 @@
             <!--------------------[START] Work Experience------------------->
             <section class="colorlib-experience" data-section="experience">
                <div class="colorlib-narrow-content">
-                  <div class="row row-bottom-padded-sm animate-box fadeInLeft animated"
-                     data-animate-effect="fadeInLeft">
+                  <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInUp">
                      <div class="about-desc">
-                        <h1>Work <span style="color: #8B5FBF">Experience</span>
-                        </h1>
+                        <h1>Work <span style="color: #8B5FBF">Experience</span></h1>
+                        <p style="color: #b8b8b8; font-size: 1.1rem; margin-top: 1rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+                           A journey through AI innovation, research, and technical expertise. From physics research to cutting-edge AI solutions, each role has shaped my expertise in machine learning, data science, and technical problem-solving.
+                        </p>
                      </div>
                   </div>
                   <div class="timeline-centered" id="experience">
@@ -106,81 +420,164 @@
                </div>
             </section>
             <!--------------------[END] Work Experience--------------------->
-            <!--------------------[START] Projects-------------------------->
-            <section class="colorlib-projects no-print" data-section="projects">
-               <div class="colorlib-narrow-content">
-                  <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-                     <div class="about-desc">
-                        <h1>Projects</h1>
-                     </div>
-                  </div>
-                  <ul id="accordion" class="accordion animate-box" data-animate-effect="fadeInLeft">
-                     <li>
-                        <div class="link">
-                           <p style="margin-bottom: 0px"> AI Projects</p>
-                           <i class="fa fa-chevron-down"></i>
-                        </div>
-                        <ul id="ml-ai-projects" class="submenu">
-                        </ul>
-                     </li>
-                     <li>
-                        <div class="link">
-                           <p style="margin-bottom: 0px"> Web Development Projects
-                           </p>
-                           <i class="fa fa-chevron-down"></i>
-                        </div>
-                        <ul id="web-projects" class="submenu">
-                        </ul>
-                     </li>
-                     <li>
-                        <div class="link">
-                           <p style="margin-bottom: 0px"> Software Projects
-                           </p>
-                           <i class="fa fa-chevron-down"></i>
-                        </div>
-                        <ul id="software-projects" class="submenu">
-                        </ul>
-                     </li>
-                     <li>
-                        <div class="link">
-                           <p style="margin-bottom: 0px">Physics Projects
-                           </p>
-                           <i class="fa fa-chevron-down"></i>
-                        </div>
-                        <ul id="physics-projects" class="submenu">
-                        </ul>
-                     </li>
-                  </ul>
-               </div>
-            </section>
-            <!--------------------[END] Projects---------------------------->
             <!--------------------[START] Blogs----------------------------->
                  <section class="colorlib-blogs no-print" data-section="blogs">
                   <div class="colorlib-narrow-content">
-                     <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                     <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInUp">
                         <div class="about-desc">
                            <h1>Latest <span style="color: #8B5FBF">Blogs</span>
                            </h1>
                         </div>
                      </div>
-                     <ul id="accordion" class="accordion animate-box" data-animate-effect="fadeInLeft">
-                        <li class="open">
-                           <ul id="blogs" class="submenu" style="display: block;">
-                           </ul>
-                        </li>
-                        <a class="readmore" href="https://medium.com/@razgaleh" target="_blank">
-                           <p>Read more &RightArrow;</p>
-                        </a>
-                     </ul>
+                     <div class="blogs-container animate-box" data-animate-effect="fadeInUp">
+                        <ul id="blogs" class="submenu">
+                        </ul>
+                        <div class="readmore-container">
+                           <a class="readmore" href="https://medium.com/@razgaleh" target="_blank">
+                              <i class="fa fa-medium"></i>
+                              <p>Read more on Medium &RightArrow;</p>
+                           </a>
+                        </div>
+                     </div>
                   </div>
                </section> 
                <!--------------------[END] Blogs------------------------------->
+            <!--------------------[START] Projects-------------------------->
+            <section class="colorlib-projects no-print" data-section="projects">
+               <div class="colorlib-narrow-content">
+                  <!-- Floating Background Elements -->
+                  <div class="floating-elements">
+                     <div class="floating-shape shape-1"></div>
+                     <div class="floating-shape shape-2"></div>
+                     <div class="floating-shape shape-3"></div>
+                  </div>
+
+                  <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInUp">
+                     <div class="about-desc">
+                        <h1><span style="color: #8B5FBF">Projects</span></h1>
+                        <p style="color: #b8b8b8; font-size: 1.1rem; margin-top: 1rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+                           A comprehensive collection of technical solutions spanning AI/ML, web development, software engineering, and physics research. Each project demonstrates practical implementation of cutting-edge technologies and problem-solving methodologies.
+                        </p>
+                     </div>
+                  </div>
+
+                  <!-- Project Filter Tabs -->
+                  <div class="project-filters animate-box" data-animate-effect="fadeInUp">
+                     <div class="filter-tabs">
+                        <button class="filter-btn active" data-filter="all">
+                           <i class="fa fa-th"></i>
+                           All Projects
+                        </button>
+                        <button class="filter-btn" data-filter="ai">
+                           <i class="fa fa-brain"></i>
+                           AI/ML
+                        </button>
+                        <button class="filter-btn" data-filter="web">
+                           <i class="fa fa-code"></i>
+                           Web Dev
+                        </button>
+                        <button class="filter-btn" data-filter="software">
+                           <i class="fa fa-cogs"></i>
+                           Software
+                        </button>
+                        <button class="filter-btn" data-filter="physics">
+                           <i class="fa fa-atom"></i>
+                           Physics
+                        </button>
+                     </div>
+                  </div>
+
+                  <!-- Project Grid -->
+                  <div class="projects-grid animate-box" data-animate-effect="fadeInUp">
+                     <!-- AI/ML Projects -->
+                     <div class="project-category" id="ai-projects">
+                        <div class="category-header">
+                           <h3><i class="fa fa-brain"></i> AI & Machine Learning</h3>
+                           <div class="category-line"></div>
+                        </div>
+                        <div class="projects-container" id="ml-ai-projects">
+                        </div>
+                     </div>
+
+                     <!-- Web Development Projects -->
+                     <div class="project-category" id="web-projects">
+                        <div class="category-header">
+                           <h3><i class="fa fa-code"></i> Web Development</h3>
+                           <div class="category-line"></div>
+                        </div>
+                        <div class="projects-container" id="web-projects-container">
+                        </div>
+                     </div>
+
+                     <!-- Software Projects -->
+                     <div class="project-category" id="software-projects">
+                        <div class="category-header">
+                           <h3><i class="fa fa-cogs"></i> Software Engineering</h3>
+                           <div class="category-line"></div>
+                        </div>
+                        <div class="projects-container" id="software-projects-container">
+                        </div>
+                     </div>
+
+                     <!-- Physics Projects -->
+                     <div class="project-category" id="physics-projects">
+                        <div class="category-header">
+                           <h3><i class="fa fa-atom"></i> Experimental Physics</h3>
+                           <div class="category-line"></div>
+                        </div>
+                        <div class="projects-container" id="physics-projects-container">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+            <!--------------------[END] Projects---------------------------->
             <!--------------------[START] Skills---------------------------->
             <section class="colorlib-skills" data-section="skills">
                <div class="colorlib-narrow-content">
-                  <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                  <!-- Floating Background Elements -->
+                  <div class="floating-elements">
+                     <div class="floating-shape shape-1"></div>
+                     <div class="floating-shape shape-2"></div>
+                     <div class="floating-shape shape-3"></div>
+                  </div>
+
+                  <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInUp">
                      <div class="about-desc">
-                        <h1>Skills</h1>
+                        <h1><span style="color: #8B5FBF">Skills</span></h1>
+                        <p style="color: #b8b8b8; font-size: 1.1rem; margin-top: 1rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+                           A comprehensive collection of technical skills spanning AI/ML frameworks, programming languages, cloud platforms, and scientific tools. Each skill represents hands-on experience and continuous learning in cutting-edge technologies.
+                        </p>
+                     </div>
+                  </div>
+
+                  <!-- Skill Filter Tabs -->
+                  <div class="skill-filters animate-box" data-animate-effect="fadeInUp">
+                     <div class="filter-tabs">
+                        <button class="filter-btn active" data-filter="all">
+                           <i class="fa fa-th"></i>
+                           All Skills
+                        </button>
+                        <button class="filter-btn" data-filter="ai">
+                           <i class="fa fa-brain"></i>
+                           AI/ML
+                        </button>
+                        <button class="filter-btn" data-filter="programming">
+                           <i class="fa fa-code"></i>
+                           Programming
+                        </button>
+                        <button class="filter-btn" data-filter="cloud">
+                           <i class="fa fa-cloud"></i>
+                           Cloud
+                        </button>
+                     <button class="filter-btn" data-filter="software">
+                        <i class="fa fa-desktop"></i>
+                        Software
+                     </button>
+                        <button class="filter-btn" data-filter="languages">
+                           <i class="fa fa-globe"></i>
+                           Languages
+                        </button>
                      </div>
                   </div>
                   
@@ -189,9 +586,10 @@
                </div>
             </section>
             <!--------------------[END] Skills------------------------------>
+
             <!-- <section class="colorlib-profile" data-section="profile-card">
                <div class="colorlib-narrow-content">
-                  <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                  <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInUp">
                      <div class="profile-cards">
                         <div class="col">
                            <div class="stack-card" user-id="razgaleh"></div>
@@ -204,21 +602,6 @@
                </div>
             </section> -->
 
-       
-            <!--------------------[START] Certifications------------------->
-            <section class="colorlib-certs" data-section="certs">
-               <div class="colorlib-narrow-content">
-                  <div class="row row-bottom-padded-sm animate-box fadeInLeft animated"
-                     data-animate-effect="fadeInLeft">
-                     <div class="about-desc">
-                        <h1>Certifications </h1>
-                     </div>
-                  </div>
-                  <div class="timeline-centered" id="certs">
-                  </div>
-               </div>
-            </section>
-            <!--------------------[END] Certifications--------------------->
             <!--------------------[START] Education------------------------->
             <section class="colorlib-education" data-section="education">
                <div class="colorlib-narrow-content">
@@ -233,33 +616,114 @@
                </div>
             </section>
             <!--------------------[END] Education--------------------------->
+            <!--------------------[START] Certifications------------------->
+            <section class="colorlib-certs" data-section="certs">
+               <div class="colorlib-narrow-content">
+                  <!-- Floating Background Elements -->
+                  <div class="floating-elements">
+                     <div class="floating-shape shape-1"></div>
+                     <div class="floating-shape shape-2"></div>
+                     <div class="floating-shape shape-3"></div>
+                  </div>
+
+                  <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInUp">
+                     <div class="about-desc">
+                        <h1><span style="color: #8B5FBF">Certifications</span></h1>
+                        <p style="color: #b8b8b8; font-size: 1.1rem; margin-top: 1rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+                           Professional certifications and specialized training that demonstrate expertise in cutting-edge technologies, cloud platforms, and industry best practices.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="timeline-centered" id="certs">
+                  </div>
+               </div>
+            </section>
+            <!--------------------[END] Certifications--------------------->
             <!--------------------[START] Contact--------------------------->
             <section class="colorlib-contact" data-section="contact">
                <div class="colorlib-narrow-content">
-                  <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                  <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInUp">
                      <div class="about-desc">
-                        <h1>Contact</h1>
+                        <h1>Let's Connect!</h1>
+                        <p class="contact-subtitle">Ready to collaborate or just want to chat about AI, ML, or tech? I'm always excited to connect with fellow innovators!</p>
                      </div>
-                     <p>Feel free to email me at <a href="mailto:razgaleh@gmail.com">razgaleh@gmail.com</a> for tech discussions, business opportunities, or just to say hello—I’d love to hear from you!
-                     </p>
+                  </div>
+                  
+                  <!-- Contact Cards -->
+                  <div class="row">
+                     <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
+                        <div class="contact-card">
+                           <div class="contact-icon">
+                              <i class="fa fa-envelope"></i>
+                           </div>
+                           <h3>Email Me</h3>
+                           <p>For collaborations, opportunities, or just to say hello!</p>
+                           <a href="mailto:razgaleh@gmail.com" class="contact-link">
+                              razgaleh@gmail.com
+                           </a>
+                        </div>
+                     </div>
+                     
+                     <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInUp">
+                        <div class="contact-card">
+                           <div class="contact-icon">
+                              <i class="fa fa-calendar"></i>
+                           </div>
+                           <h3>Schedule a Call</h3>
+                           <p>Book a meeting to discuss projects or opportunities.</p>
+                           <a href="mailto:razgaleh@gmail.com?subject=Meeting Request&body=Hi Fatemeh, I'd like to schedule a meeting with you." class="contact-link">Book Meeting</a>
+                        </div>
+                     </div>
+                     
+                     <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInRight">
+                        <div class="contact-card">
+                           <div class="contact-icon">
+                              <i class="fa fa-download"></i>
+                           </div>
+                           <h3>Download Resume</h3>
+                           <p>Get my latest resume and portfolio details.</p>
+                           <a href="Resume_Fatemeh_Abbasi_Razgaleh.pdf" class="contact-link" download>Download PDF</a>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <!-- Social Media Section -->
+                  <div class="row">
+                     <div class="col-md-12 animate-box" data-animate-effect="fadeInUp">
+                        <div class="contact-social">
+                           <h3>Follow My Journey</h3>
+                           <p>Stay updated with my latest projects, insights, and tech discoveries</p>
+                           <div class="social-links">
+                              <a href="https://github.com/razgaleh" class="social-link github">
+                                 <i class="fa-brands fa-github"></i>
+                                 <span>GitHub</span>
+                              </a>
+                              <a href="https://www.linkedin.com/in/razgaleh" class="social-link linkedin">
+                                 <i class="fa-brands fa-linkedin-in"></i>
+                                 <span>LinkedIn</span>
+                              </a>
+                              <a href="https://medium.com/@razgaleh" class="social-link medium">
+                                 <i class="fa-brands fa-medium"></i>
+                                 <span>Medium</span>
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <!-- Call to Action -->
+                  <div class="row">
+                     <div class="col-md-12 animate-box" data-animate-effect="fadeInUp">
+                        <div class="contact-cta">
+                           <h3>Let's Build Something Amazing Together!</h3>
+                           <p>Whether you're looking for a collaborator, have an exciting project idea, or just want to discuss the latest in AI and machine learning, I'd love to hear from you. Let's turn ideas into reality!</p>
+                           <a href="mailto:razgaleh@gmail.com" class="btn btn-primary">Start a Conversation</a>
+                        </div>
+                     </div>
                   </div>
                </div>
             </section>
             <!--------------------[END] Contact----------------------------->
-            <!--------------------[START] Footer---------------------------->
-            <section class="colorlib-footer no-print" data-section="footer">
-               <div class="colorlib-narrow-content">
-                  <footer class="footer" id="footer">
-                     <ul class="footer-socials">
-                        <li><a href="https://github.com/razgaleh"><i class="fa-brands fa-github"></i><span class="social-name">GitHub</span></a></li>
-                        <li><a href="https://www.linkedin.com/in/razgaleh"><i class="fa-brands fa-linkedin-in"></i><span class="social-name">LinkedIn</span></a></li>
-                        <li><a href="https://medium.com/@razgaleh"><i class="fa-brands fa-medium"></i><span class="social-name">Medium</span></a></li>
-                      </ul>
-                      
-                  </footer>
-               </div>
-            </section>
-            <!--------------------[END] Footer------------------------------>
          </div>
          <!-----[END] Main Page--------->
       </div>

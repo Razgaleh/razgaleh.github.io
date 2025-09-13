@@ -8,153 +8,190 @@ export const bio = [
 ];
 
 export const skills = [
+  // AI/ML Skills
   {
     title: "AI Frameworks",
     skillName: "LangChain",
-    color: "1",
+    color: "rainbow-1",
     percentage: "60",
+    category: "ai",
   }, {
     title: "AI Frameworks",
     skillName: "TensorFlow",
-    color: "7",
+    color: "rainbow-2",
     percentage: "70",
+    category: "ai",
   },{
     title: "AI Frameworks",
     skillName: "Keras",
-    color: "4",
+    color: "rainbow-3",
     percentage: "70",
+    category: "ai",
   },  {
     title: "AI Frameworks",
     skillName: "Scikit-Learn",
-    color: "5",
+    color: "rainbow-4",
     percentage: "70",
+    category: "ai",
   }, {
     title: "AI Frameworks",
     skillName: "PyTorch",
-    color: "6",
+    color: "rainbow-5",
     percentage: "20",
+    category: "ai",
   },{
     title: "AI Frameworks",
     skillName: "JAX",
-    color: "7",
+    color: "rainbow-6",
     percentage: "10",
+    category: "ai",
   },{
     title: "AI Frameworks",
     skillName: "LlamaIndex",
-    color: "2",
+    color: "rainbow-7",
     percentage: "10",
-  },
-  {
+    category: "ai",
+  },{
     title: "MLOps Tools",
     skillName: "Docker",
-    color: "7",
+    color: "rainbow-1",
     percentage: "70",
+    category: "ai",
   },{
     title: "MLOps Tools",
     skillName: "Kubernetes",
-    color: "2",
+    color: "rainbow-2",
     percentage: "80",
+    category: "ai",
   },{
     title: "MLOps Tools",
     skillName: "GitHub / Git",
-    color: "3",
+    color: "rainbow-3",
     percentage: "80",
-  },{
+    category: "ai",
+  },
+  // Cloud & DevOps Skills
+  {
     title: "Cloud Platforms",
     skillName: "Azure",
-    color: "3",
+    color: "ocean-4",
     percentage: "80",
+    category: "cloud",
   },{
     title: "Cloud Platforms",
     skillName: "Google Cloud Platform",
-    color: "4",
+    color: "ocean-5",
     percentage: "50",
-  },{
+    category: "cloud",
+  },
+  // Programming Skills
+  {
     title: "Programming Languages",
     skillName: "Python",
-    color: "8",
+    color: "sunset-1",
     percentage: "80",
+    category: "programming",
   }, {
     title: "Programming Languages",
     skillName: "C++ / C",
-    color: "9",
+    color: "sunset-2",
     percentage: "50",
-  },{
-    title: "Programming Languages",
-    skillName: "SQL",
-    color: "4",
-    percentage: "60",
+    category: "programming",
   },
   {
     title: "Programming Languages",
     skillName: "JavaScript",
-    color: "2",
+    color: "sunset-4",
     percentage: "50",
+    category: "programming",
   },{
     title: "Programming Languages",
     skillName: "Express & Node.js",
-    color: "5",
+    color: "sunset-5",
     percentage: "60",
+    category: "programming",
   },{
     title: "Programming Languages",
     skillName: "HTML",
-    color: "1",
+    color: "sunset-6",
     percentage: "90",
+    category: "programming",
   },{
     title: "Programming Languages",
     skillName: "CSS",
-    color: "2",
+    color: "sunset-7",
     percentage: "80",
-  },{
-    title: "Databases",
-    skillName: "MySQL",
-    color: "1",
-    percentage: "60",
-  },{
-    title: "Scientific Tools",
+    category: "programming",
+  },
+  // Software
+  {
+    title: "Software",
     skillName: "MATLAB",
-    color: "3",
+    color: "forest-1",
     percentage: "70",
+    category: "software",
   },{
-    title: "Scientific Tools",
+    title: "Software",
     skillName: "Mathematica",
-    color: "2",
+    color: "forest-2",
     percentage: "80",
+    category: "software",
   },{
-    title: "Scientific Tools",
+    title: "Software",
     skillName: "LabVIEW",
-    color: "1",
+    color: "forest-3",
     percentage: "50",
+    category: "software",
   },{
-    title: "Scientific Tools",
+    title: "Software",
     skillName: "SolidWorks",
-    color: "4",
+    color: "forest-4",
     percentage: "50",
+    category: "software",
   },{
-    title: "Scientific Tools",
+    title: "Software",
     skillName: "Arduino",
-    color: "5",
+    color: "forest-5",
     percentage: "80",
+    category: "software",
   },{
+    title: "Software",
+    skillName: "SQL",
+    color: "forest-1",
+    percentage: "60",
+    category: "software",
+  },{
+    title: "Software",
+    skillName: "MySQL",
+    color: "forest-2",
+    percentage: "60",
+    category: "software",
+  },
+  // Languages
+  {
     title: "Languages",
     skillName: "English - Fluent",
-    color: "6",
+    color: "cosmic-1",
     percentage: "100",
+    category: "languages",
   },{
     title: "Languages",
     skillName: "Persian - Fluent",
-    color: "2",
+    color: "cosmic-2",
     percentage: "100",
+    category: "languages",
   },{
     title: "Languages",
     skillName: "French - Intermediate - DELF B2",
-    color: "3",
+    color: "cosmic-3",
     percentage: "70",
+    category: "languages",
   },{
     title: "Languages",
     skillName: "German - Beginner",
-    color: "4",
+    color: "cosmic-4",
     percentage: "10",
+    category: "languages",
   }
 
 ];
@@ -167,7 +204,7 @@ export const projects = {
       summary:
         "Retrieval Augmented Generation (RAG) with LangChain and Streamlit, runnable via NVIDIA NIMs or locally.",
       preview: "https://github.com/Razgaleh/Arrow-RAG-Demo",
-      techStack: ["RAG", "Gen AI", "LangChain", "NVIDIA NIMs", "Python", "Streamlit",],
+      techStack: ["RAG", "Gen AI", "LangChain", "NVIDIA NIMs", "Python", "Streamlit"],
     },
     {
       projectName: "Deep Learning in Particle Physics",
@@ -207,7 +244,7 @@ export const projects = {
       summary:
         "Relational Database (RDBMS) Management & Advanced Data Analysis",
       preview: "https://github.com/Razgaleh/FIFA-World-Cup-2022",
-      techStack: ["Python", "SQL","Express & Node.js"],
+      techStack: ["Python", "SQL", "Express & Node.js"],
     },
     {
       projectName: "Motion Detection in Traffic Videos",
@@ -226,40 +263,6 @@ export const projects = {
       techStack: ["Python", "Mozilla DeepSpeech"],
     },
   ],
-  webProjects: [
-    {
-      projectName: "Personal Portfolio Website",
-      image: "images/portfolio-logo.png",
-      summary:
-        "This Portfolio Website!",
-      preview: "https://github.com/Razgaleh/razgaleh.github.io",
-      techStack: ["JavaScript","CSS", "HTML"],
-    },
-    {
-      projectName: "Personal Portfolio Website",
-      image: "images/old-portfolio-logo.png",
-      summary:
-        "Previous Portfolio Website!",
-      preview: "https://github.com/vinaysomawat/WhatsApp-Bot",
-      techStack: ["SCSS", "CSS", "HTML"],
-    },
-    {
-      projectName: "Chess Club Newsletter Website",
-      image: "images/chess-website-logo.png",
-      summary:
-        "Mock Website",
-      preview: "https://github.com/Razgaleh/Chess-Club-Newsletter-Mock-Website",
-      techStack: ["JavaScript", "CSS", "HTML"],
-    }, 
-    {
-      projectName: "Discovery Center Theme Park Website",
-      image: "images/discovery-website-logo.png",
-      summary:
-        "Mock Website",
-      preview: "https://github.com/Razgaleh/Discovery-Center-Mock-Website",
-      techStack: ["Team Work", "CSS", "HTML", "Front-end"],
-    },
-  ],
   softwareProjects: [  
     {
       projectName: "SmartHome App",
@@ -267,14 +270,14 @@ export const projects = {
       summary:
         "Smart Device Database Management Web App",
       preview: "https://drive.google.com/file/d/1AtOi36HshWupw7mxQvmP2V1ljjzLsW-2/view?usp=sharing",
-      techStack: ["Node.js","SQL", "Back-end"],
+      techStack: ["Node.js", "SQL", "Back-end"],
     },{
       projectName: "WeStudy App",
       image: "images/study-logo.jpeg",
       summary:
         "Study Partner Finder App",
       preview: "https://drive.google.com/file/d/1G_39Klq-7N939JJqDaUaijWner4oMcmQ/view?usp=sharing",
-      techStack: ["Team Work","Node.js", "Agile Software Development"],
+      techStack: ["Team Work", "Node.js", "Agile Software Development"],
     },{
       projectName: "Cryptocurrency Exchange Command Line Program",
       image: "images/crypto-logo.webp",
@@ -288,14 +291,14 @@ export const projects = {
       summary:
         "Audio Player & Mixer App",
       preview: "https://drive.google.com/file/d/1d-NQxDofOhMy3EIuCUY4QHEZy-_jc8-1/view?usp=sharing",
-      techStack: ["C++","Object Oriented Programming"],
+      techStack: ["C++", "Object Oriented Programming"],
     },{
       projectName: "Audio Player & Mixer Application",
       image: "images/audio-app-logo.png",
       summary:
         "A Web-based Audio Player & Mixer Application",
       preview: "https://github.com/Razgaleh/Web-Audio-Application",
-      techStack: ["JavaScript","p5.js Sound", "HTML", "CSS"],
+      techStack: ["JavaScript", "p5.js Sound", "HTML", "CSS"],
     },
     {
       projectName: "Audio Visualizer Application",
@@ -303,7 +306,7 @@ export const projects = {
       summary:
         "A Web-based Audio Visualizer Application with Speech Recognition",
       preview: "https://github.com/Razgaleh/Web-Audio-Application",
-      techStack: ["JavaScript", "Meyda","p5.js Sound", "p5.jsSpeech", "HTML", "CSS"],
+      techStack: ["JavaScript", "Meyda", "p5.js Sound", "p5.jsSpeech", "HTML", "CSS"],
     },
     {
       projectName: "Automated Video Conversion Application",
@@ -330,6 +333,40 @@ export const projects = {
       techStack: ["JavaScript", "p5.js"],
     }
   ],
+  webProjects: [
+    {
+      projectName: "Personal Portfolio Website",
+      image: "images/portfolio-logo.png",
+      summary:
+        "Modern responsive portfolio website with interactive animations and dynamic content loading",
+      preview: "https://github.com/Razgaleh/razgaleh.github.io",
+      techStack: ["JavaScript", "CSS", "HTML"],
+    },
+    {
+      projectName: "Previous Portfolio Website",
+      image: "images/old-portfolio-logo.png",
+      summary:
+        "Previous Portfolio Website Implementation",
+      preview: "https://github.com/Razgaleh/razgaleh.github.io",
+      techStack: ["SCSS", "CSS", "HTML"],
+    },
+    {
+      projectName: "Chess Club Newsletter Website",
+      image: "images/chess-website-logo.png",
+      summary:
+        "Responsive newsletter website with dynamic content management and user interaction features",
+      preview: "https://github.com/Razgaleh/Chess-Club-Newsletter-Mock-Website",
+      techStack: ["JavaScript", "CSS", "HTML"],
+    }, 
+    {
+      projectName: "Discovery Center Theme Park Website",
+      image: "images/discovery-website-logo.png",
+      summary:
+        "Collaborative theme park website with interactive features and responsive design",
+      preview: "https://github.com/Razgaleh/Discovery-Center-Mock-Website",
+      techStack: ["Team Work", "CSS", "HTML", "Front-end"],
+    },
+  ],
   physicsProjects: [
     {
       projectName: "Hf Rod Ablation Source Picomotor",
@@ -345,15 +382,15 @@ export const projects = {
       summary: "Laser Beam Polarity Measurement Using Optical Setup, Arduino Interface, and MATLAB Data Acquisition",
       preview:
         "https://github.com/Razgaleh/Polarimeter",
-      techStack: ["Optics", "Lasers", "Arduino", "MATLAB","Voltage Divider Circuit"],
+      techStack: ["Optics", "Lasers", "Arduino", "MATLAB", "Voltage Divider Circuit"],
     },
     {
       projectName: "Visual Display of Music",
-      image: "images/voltage-logo.png",
+      image: "images/audio-visual-logo.png",
       summary: " Electronic Music Visualizer",
       preview:
         "https://docs.google.com/presentation/d/1Z0vnaYgfT2vSQzQ_hytnMh6xuGdLOKmO/edit?usp=sharing&ouid=108455844285398591572&rtpof=true&sd=true",
-      techStack: ["Team Work", "Electronics", "Voltage Amplifier", "Band-Pass Filters","Comparator Circuit"],
+      techStack: ["Team Work", "Electronics", "Voltage Amplifier", "Band-Pass Filters", "Comparator Circuit"],
     },
   ],
 };
@@ -363,19 +400,19 @@ export const certs = [
     title: "NVIDIA-Certified Associate: Generative AI and LLMs",
     duration: "In Progress",
     tags: ["Generative AI", "LLMs", "RAG","NVIDIA"],
-    icon: "star",
+    icon: "robot",
   },  
   {
     title: "Microsoft Certified: Azure Data Scientist Associate",
     duration: "In Progress",
     tags: ["Data Science","Cloud", "AI", "Azure", "Microsoft"],
-    icon: "star",
+    icon: "chart-line",
   }, 
   {
     title: "NVIDIA-Certified Associate: AI Infrastructure and Operations",
     duration: "June 2024",
     tags: ["Generative AI", "AI Infrastructure", "NVIDIA"],
-    icon: "star",
+    icon: "server",
   },
   {
     title: "NVIDIA Partners Certifications",
@@ -387,50 +424,50 @@ export const certs = [
       "DGX Cloud Curriculum",
       "Compute Technical",
        "NVIDIA"],
-    icon: "star",
+    icon: "microchip",
   }, 
   {
     title: "Arrow AI CoE Team Technical Curriculum",
     duration: "May 2024",
     tags: ["AI Center of Excellence", "AI", "Arrow Electronics"],
-    icon: "star",
+    icon: "cogs",
   },
   {
     title: "QxQ Quantum Computing",
     duration: "May 2024",
     tags: ["Quantum Computing", "Physics"],
-    icon: "star",
+    icon: "atom",
   },{
     title: "Microsoft Certified: Azure Fundamentals, AZ-900",
     duration: "April 2024",
     tags: ["Cloud", "Azure", "Microsoft"],
-    icon: "star",
+    icon: "cloud",
   },{
     title: "ArrowSphere Platform Accreditation",
     duration: "March 2024",
     tags: ["Cloud", "ArrowSphere","Arrow Electronics"],
-    icon: "star",
+    icon: "globe",
   },
   {
     title: "Google IT Support Specialization",
     duration: "Aug 2021",
     tags: ["Cloud", "GCP","Google"],
-    icon: "star",
+    icon: "headset",
   },{
     title: "Data Engineering, Big Data, and Machine Learning on GCP Specialization",
     duration: "October 2021",
     tags: ["Cloud", "GCP","Google"],
-    icon: "star",
+    icon: "database",
   },{
     title: "Preparing for Google Cloud Certification: Cloud Data Engineer",
     duration: "May 2020",
     tags: ["Data Engineer","Cloud", "GCP","Google"],
-    icon: "star",
+    icon: "wrench",
   },{
-    title: "Preparing for Google Cloud Certification: Cloud Data Engineer",
+    title: "Preparing for Google Cloud Certification: Cloud Engineer",
     duration: "May 2020",
     tags: ["Cloud Engineer","Cloud", "GCP","Google"],
-    icon: "star",
+    icon: "tools",
   }
   
 ];
@@ -454,7 +491,7 @@ export const experience = [
     ],
 
     tags: [],
-    icon: "code",
+    icon: "brain",
   },
   {
     title: "AI Technical Solutions Associate",
@@ -472,14 +509,14 @@ export const experience = [
     ],
 
     tags: ["Docker", "Kubernetes", "LangChain", "LlamaIndex", "RAG", "LLMs"],
-    icon: "code",
+    icon: "rocket",
   },
   {
     title: "Undergraduate Research Assistant",
     duration: "Jan. 2016 - Sep. 2019",
     subtitle: "Joint Institute for Laboratory Astrophysics (JILA)",
     details: [
-      "Precision Measurement of the Electron’s Electric Dipole Moment (eEDM)",
+      "Precision Measurement of the Electron's Electric Dipole Moment (eEDM)",
       "Supervised by Nobel Laureate Prof. Eric Cornell & Prof. Jun Ye",
       "Developed Programming, Electrical, Optical & Mechanical Projects",
       "Notable Projects : Hf Rod Ablation Source Picomotor & Polarimeter",
@@ -492,7 +529,7 @@ export const experience = [
       "Circuit Design",
       "Laser"
     ],
-    icon: "atom",
+    icon: "flask",
   }
 
 ];
@@ -506,7 +543,7 @@ export const education = [
     tags: [
       "Deep Learning",
     ],
-    icon: "graduation-cap",
+    icon: "brain",
   },
   {
     title: "BS in Computer Science with Specialization in ML & AI ",
@@ -529,7 +566,7 @@ export const education = [
     subtitle: "University of Colorado Boulder",
     details: [],
     tags: ["Quantum Mechanics I", "Electromagnetism I", "Modern Physics", "Complex Analysis" , "Electronics Lab"],
-    icon: "chalkboard-user",
+    icon: "atom",
   },
 ];
 
@@ -599,3 +636,4 @@ export const footer = [
     ],
   },
 ];
+

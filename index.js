@@ -9,25 +9,6 @@ import {
   } from "./data.js";
 
 
-// Toggle visibility with smooth transition for the Skills subsections when clicking on "Skills"
-document.querySelector('a[data-nav-section="skills"]').addEventListener('click', function(e) {
-  e.preventDefault();
-  
-  const skillsSubsections = document.getElementById('skills-subsections');
-  skillsSubsections.classList.toggle('show'); // Toggle the 'show' class for smooth transition
-});
-
-// Add event listeners to other main navigation links to hide the Skills subsections smoothly
-const mainSections = document.querySelectorAll('#navbar > ul > li > a');
-mainSections.forEach(link => {
-  if (link.getAttribute('data-nav-section') !== 'skills') {
-      link.addEventListener('click', () => {
-          // Remove the 'show' class from Skills subsections if another main section is clicked
-          const skillsSubsections = document.getElementById('skills-subsections');
-          skillsSubsections.classList.remove('show');
-      });
-  }
-});
 
 
 import { URLs } from './user-data/urls.js';
@@ -50,12 +31,26 @@ import { URLs } from './user-data/urls.js';
   async function fetchBlogsFromMedium(url) {
     try {
       const response = await fetch(url);
-      const { items } = await response.json();
-      populateBlogs(items, "blogs");
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (data && data.items) {
+        populateBlogs(data.items, "blogs");
+      } else {
+        console.error("No items found in API response:", data);
+        // Show a fallback message
+        const projectdesign = document.getElementById("blogs");
+        projectdesign.innerHTML = '<p style="color: #8B5FBF; text-align: center; padding: 2rem;">Blog posts are currently unavailable. Please check back later.</p>';
+      }
     } catch (error) {
-      throw new Error(
-        `Error in fetching the blogs from Medium profile: ${error}`
-      );
+      console.error("Error fetching blogs:", error);
+      // Show error message in the blogs section
+      const projectdesign = document.getElementById("blogs");
+      projectdesign.innerHTML = '<p style="color: #8B5FBF; text-align: center; padding: 2rem;">Unable to load blog posts at the moment. Please try again later.</p>';
     }
   }
 
@@ -63,14 +58,16 @@ import { URLs } from './user-data/urls.js';
   async function fetchGitConnectedData(url) {
     try {
       const response = await fetch(url);
-      console.log(response);
-      const { basics } = await response.json();
-      // populateBlogs(items, "blogs");
-      mapBasicResponse(basics);
+      if (!response.ok) {
+        console.warn('GitConnected API not available, skipping...');
+        return;
+      }
+      const data = await response.json();
+      if (data && data.basics) {
+        mapBasicResponse(data.basics);
+      }
     } catch (error) {
-      throw new Error(
-        `Error in fetching the blogs from git connected: ${error}`
-      );
+      console.warn('GitConnected API error:', error.message);
     }
   }
 
@@ -146,6 +143,9 @@ function populateSkills(items, id) {
         return;
     }
 
+    // Store original skills for filtering
+    window.allSkills = items;
+
     const groupedSkills = items.reduce((acc, item) => {
         if (!acc[item.title]) {
             acc[item.title] = [];
@@ -166,12 +166,12 @@ function populateSkills(items, id) {
             titleDiv.append(titleH4);
             skillsTag.append(titleDiv);
 
-            skills.forEach(({ skillName, color, percentage }) => {
+            skills.forEach(({ skillName, color, percentage, category }) => {
                 const h3 = getElement("h3", null);
                 h3.innerHTML = skillName;
 
                 const divProgress = getElement("div", "progress");
-                const divProgressBar = getElement("div", `progress-bar color-${color}`);
+                const divProgressBar = getElement("div", `progress-bar ${color}`);
                 divProgressBar.style.width = `${percentage}%`;
                 divProgress.append(divProgressBar);
 
@@ -179,6 +179,8 @@ function populateSkills(items, id) {
                 divProgressWrap.append(h3, divProgress);
 
                 const divAnimateBox = getElement("div", "col-md-6 animate-box");
+                divAnimateBox.setAttribute("data-category", category || "all");
+                divAnimateBox.setAttribute("data-section-id", sectionId);
                 divAnimateBox.append(divProgressWrap);
 
                 skillsTag.append(divAnimateBox);
@@ -187,14 +189,65 @@ function populateSkills(items, id) {
     });
 }
 
-document.querySelectorAll('#skills-subsections a[data-nav-section]').forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const sectionId = this.getAttribute('data-nav-section');
-        const sectionTitle = sectionId.replace('-skills', '').replace(/-/g, ' ');
-        scrollToSection(sectionTitle);
+// Skill filtering functionality
+function filterSkills(category) {
+    const skillItems = document.querySelectorAll('#skills .col-md-6.animate-box');
+    const sectionHeaders = document.querySelectorAll('#skills .col-md-12.animate-box');
+    
+    // Track which sections have visible skills by their ID
+    const visibleSectionIds = new Set();
+    
+    skillItems.forEach(item => {
+        const itemCategory = item.getAttribute('data-category');
+        
+        if (category === 'all' || itemCategory === category) {
+            item.style.display = 'block';
+            item.classList.add('fade-in');
+            
+            // Get the section ID from the data attribute
+            const sectionId = item.getAttribute('data-section-id');
+            if (sectionId) {
+                visibleSectionIds.add(sectionId);
+            }
+        } else {
+            item.style.display = 'none';
+            item.classList.remove('fade-in');
+        }
     });
-});
+    
+    // Show/hide section headers based on whether they have visible skills
+    sectionHeaders.forEach(header => {
+        const sectionId = header.id;
+        if (visibleSectionIds.has(sectionId)) {
+            header.style.display = 'block';
+        } else {
+            header.style.display = 'none';
+        }
+    });
+    
+    // Update active filter button
+    const filterButtons = document.querySelectorAll('.skill-filters .filter-btn');
+    filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-filter') === category) {
+            btn.classList.add('active');
+        }
+    });
+}
+
+// Initialize skill filtering
+function initializeSkillFiltering() {
+    const filterButtons = document.querySelectorAll('.skill-filters .filter-btn');
+    
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const category = this.getAttribute('data-filter');
+            filterSkills(category);
+        });
+    });
+}
+
+
 
 
 
@@ -245,98 +298,213 @@ skillLinks.forEach(link => {
 
   
   /**
-   * Populates projects to the HTML page.
+   * Populates projects to the HTML page with modern card design.
    *
    * @function
    *
    * @param {Array} items - An array of objects that contain project information.
    * @param {string} id - The id of the HTML element to which projects will be appended.
+   * @param {string} category - The category of projects (ai, web, software, physics).
    *
    * @returns {void}
    */
   
-  function populateProjects(items, id) {
-    let projectdesign = document.getElementById(id);
+  function populateProjects(items, id, category) {
+    let projectContainer = document.getElementById(id);
   
     // Clear existing projects in case this is called multiple times
-    projectdesign.innerHTML = "";
+    projectContainer.innerHTML = "";
   
     for (let i = 0; i < items.length; i++) {
-      // Create the title (h4) for the project
-      let h4 = document.createElement("h4");
-      h4.className = "project-heading";
-      h4.innerHTML = items[i].projectName;
-  
-      // Create the anchor tag for the project link
-      let a = document.createElement("a");
-      a.target = "_blank";
-      a.href = items[i].preview;
-  
-      // Create the image for the project
+      // Create the main project card
+      let projectCard = document.createElement("div");
+      projectCard.className = "project-card";
+      projectCard.setAttribute("data-category", category);
+      
+      // Create project image container
+      let projectImage = document.createElement("div");
+      projectImage.className = "project-image";
+      
       let img = document.createElement("img");
-      img.className = "img-fluid";
       img.src = items[i].image;
-  
-      // Create the left and right content divs
-      let divResumeContentLeft = document.createElement("div");
-      divResumeContentLeft.className = "resume-content";
-      divResumeContentLeft.id = "left-div";
-      divResumeContentLeft.append(img);
-  
-      let divResumeContentRight = document.createElement("div");
-      divResumeContentRight.className = "resume-content";
-      divResumeContentRight.id = "right-div";
-  
-      // Add the project description
-      let p = document.createElement("p");
-      p.className = "project-description";
-      p.innerHTML = items[i].summary;
-  
-      // Create and populate the technology stack badges
-      let divSpan = document.createElement("div");
+      img.alt = items[i].projectName;
+      
+      // Create overlay for hover effect
+      let projectOverlay = document.createElement("div");
+      projectOverlay.className = "project-overlay";
+      
+      let overlayContent = document.createElement("div");
+      overlayContent.className = "overlay-content";
+      
+      // Project title in overlay
+      let overlayTitle = document.createElement("div");
+      overlayTitle.className = "project-title";
+      overlayTitle.textContent = items[i].projectName;
+      
+      // Project description in overlay
+      let overlayDescription = document.createElement("div");
+      overlayDescription.className = "project-description";
+      overlayDescription.textContent = items[i].summary;
+      
+      // Tech stack in overlay
+      let overlayTechStack = document.createElement("div");
+      overlayTechStack.className = "tech-stack";
+      
+      // Add tech stack tags
+      items[i].techStack.forEach(tech => {
+        let techTag = document.createElement("span");
+        techTag.className = "tech-tag";
+        techTag.textContent = tech;
+        overlayTechStack.append(techTag);
+      });
+      
+      // View project button
+      let viewProjectBtn = document.createElement("a");
+      viewProjectBtn.className = "view-project-btn";
+      viewProjectBtn.href = items[i].preview;
+      viewProjectBtn.target = "_blank";
+      viewProjectBtn.rel = "noopener noreferrer";
+      
+      let btnIcon = document.createElement("i");
+      btnIcon.className = "fa fa-external-link";
+      
+      let btnText = document.createElement("span");
+      btnText.textContent = "View Project";
+      
+      viewProjectBtn.append(btnIcon);
+      viewProjectBtn.append(btnText);
+      
+      overlayContent.append(overlayTitle);
+      overlayContent.append(overlayDescription);
+      overlayContent.append(overlayTechStack);
+      overlayContent.append(viewProjectBtn);
+      projectOverlay.append(overlayContent);
+      
+      projectImage.append(img);
+      projectImage.append(projectOverlay);
+      
+      // Create project content
+      let projectContent = document.createElement("div");
+      projectContent.className = "project-content";
+      
+      // Project title
+      let projectTitle = document.createElement("h3");
+      projectTitle.className = "project-title";
+      projectTitle.textContent = items[i].projectName;
+      
+      // Project description
+      let projectDescription = document.createElement("p");
+      projectDescription.className = "project-description";
+      projectDescription.textContent = items[i].summary;
+      
+      // Tech stack tags
+      let techStack = document.createElement("div");
+      techStack.className = "tech-stack";
+      
       for (let k = 0; k < items[i].techStack.length; k++) {
-        let span = document.createElement("span");
-        span.className = "badge badge-secondary";
-        span.innerHTML = items[i].techStack[k];
-        divSpan.append(span);
+        let techTag = document.createElement("span");
+        techTag.className = "tech-tag";
+        techTag.textContent = items[i].techStack[k];
+        techStack.append(techTag);
       }
-  
-      // Add description and badges to the sub-heading
-      let divSubHeading = document.createElement("div");
-      divSubHeading.className = "sub-heading";
-      divSubHeading.append(p);
-      divSubHeading.append(divSpan);
-  
-      divResumeContentRight.append(divSubHeading);
-  
-      // Combine left and right content into the resume item
-      let divResumeItem = document.createElement("div");
-      divResumeItem.className = "resume-item";
-      divResumeItem.append(divResumeContentLeft);
-      divResumeItem.append(divResumeContentRight);
-  
-      // Combine everything into the anchor tag
-      a.append(divResumeItem);
-  
-      // Create the project card and append the project heading
-      let divProjectCard = document.createElement("div");
-      divProjectCard.className = "project-card";
-      divProjectCard.append(h4); // Add project name
-      divProjectCard.append(a);
-  
-      // Create the list item and append the project card
-      let li = document.createElement("li");
-      li.append(divProjectCard);
-  
-      // Add the list item to the project container
-      projectdesign.append(li);
-  
-      // Add a horizontal rule if not the last item
-      if (i != items.length - 1) {
-        let hr = document.createElement("hr");
-        projectdesign.append(hr);
-      }
+      
+      // Project actions
+      let projectActions = document.createElement("div");
+      projectActions.className = "project-actions";
+      
+      // Project link
+      let projectLink = document.createElement("a");
+      projectLink.className = "project-link";
+      projectLink.href = items[i].preview;
+      projectLink.target = "_blank";
+      projectLink.rel = "noopener noreferrer";
+      
+      let linkIcon = document.createElement("i");
+      linkIcon.className = "fa fa-external-link";
+      
+      let linkText = document.createElement("span");
+      linkText.textContent = "View Project";
+      
+      projectLink.append(linkIcon);
+      projectLink.append(linkText);
+      
+      // Project stats (optional - can be customized)
+      let projectStats = document.createElement("div");
+      projectStats.className = "project-stats";
+      
+      let statItem = document.createElement("div");
+      statItem.className = "stat-item";
+      
+      let statIcon = document.createElement("i");
+      statIcon.className = "fa fa-code";
+      
+      let statText = document.createElement("span");
+      statText.textContent = "Full Stack";
+      
+      statItem.append(statIcon);
+      statItem.append(statText);
+      projectStats.append(statItem);
+      
+      projectActions.append(projectLink);
+      projectActions.append(projectStats);
+      
+      // Assemble the project content
+      projectContent.append(projectTitle);
+      projectContent.append(projectDescription);
+      projectContent.append(techStack);
+      projectContent.append(projectActions);
+      
+      // Assemble the project card
+      projectCard.append(projectImage);
+      projectCard.append(projectContent);
+      
+      // Add click handler to the entire card
+      projectCard.addEventListener('click', function(e) {
+        // Only trigger if not clicking on the link itself
+        if (!e.target.closest('.project-link')) {
+          window.open(items[i].preview, '_blank', 'noopener,noreferrer');
+        }
+      });
+      
+      // Add cursor pointer to indicate clickability
+      projectCard.style.cursor = 'pointer';
+      
+      // Add the project card to the container
+      projectContainer.append(projectCard);
     }
+  }
+
+  /**
+   * Initialize project filtering functionality
+   */
+  function initializeProjectFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCategories = document.querySelectorAll('.project-category');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        const filter = this.getAttribute('data-filter');
+        
+        // Show/hide project categories based on filter
+        projectCategories.forEach(category => {
+          if (filter === 'all') {
+            category.classList.remove('hidden');
+          } else {
+            const categoryId = category.getAttribute('id');
+            if (categoryId === `${filter}-projects`) {
+              category.classList.remove('hidden');
+            } else {
+              category.classList.add('hidden');
+            }
+          }
+        });
+      });
+    });
   }
   
 
@@ -355,61 +523,141 @@ skillLinks.forEach(link => {
   function populateBlogs(items, id) {
     const projectdesign = document.getElementById(id);
     const count = 3;
+    
   
     for (let i = 0; i < count; i++) {
-      const h4 = document.createElement("h4");
-      h4.className = "project-heading";
-      h4.innerHTML = items[i].title;
-  
-      const a = document.createElement("a");
-      a.href = items[i].link;
-      a.target = "_blank";
-      a.append(h4);
-
+      // Create the main blog card
+      const blogCard = document.createElement("a");
+      blogCard.className = "blog-card";
+      blogCard.href = items[i].link;
+      blogCard.target = "_blank";
+      blogCard.rel = "noopener noreferrer";
+      
+      // Create blog content container
+      const blogContent = document.createElement("div");
+      blogContent.className = "blog-content";
+      
+      // Create blog title
+      const blogTitle = document.createElement("h3");
+      blogTitle.className = "project-heading";
+      blogTitle.innerHTML = items[i].title;
+      
+      // Create publish date
       const pubDateEle = document.createElement('p');
       pubDateEle.className = 'publish-date';
       pubDateEle.innerHTML = getBlogDate(items[i].pubDate);
-      a.append(pubDateEle);
-  
-      const divResumeContentRight = document.createElement("div");
-      divResumeContentRight.className = "resume-content";
-      divResumeContentRight.id = "right-div";
-  
-      const p = document.createElement("p");
-      p.className = "project-description";
+      
+      // Create blog description
+      const blogDescription = document.createElement("p");
+      blogDescription.className = "project-description";
+      
+      
       const html = items[i].content;
-      const [, doc] = /<p>(.*?)<\/p>/g.exec(html) || [];
-      p.innerHTML = doc;
-  
-      const divSpan = document.createElement("div");
+      const descriptionField = items[i].description;
+      
+      // Extract description from content - try multiple patterns
+      let description = "";
+      
+      // First try the description field if it exists
+      if (descriptionField && descriptionField.trim()) {
+        description = descriptionField.trim();
+        // Clean up HTML tags from description field too
+        description = description
+          .replace(/<[^>]*>/g, '') // Remove HTML tags
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&nbsp;/g, ' ')
+          .replace(/\s+/g, ' ') // Replace multiple spaces with single space
+          .trim();
+      } else if (html) {
+        // Try to get the first paragraph with better regex
+        const firstParagraphMatch = /<p[^>]*>([^<]*(?:<[^>]+>[^<]*)*?)<\/p>/i.exec(html);
+        if (firstParagraphMatch && firstParagraphMatch[1]) {
+          description = firstParagraphMatch[1];
+        } else {
+          // Try alternative patterns for different HTML structures
+          const altPatterns = [
+            /<p[^>]*>(.*?)<\/p>/i,
+            /<div[^>]*>(.*?)<\/div>/i,
+            /<span[^>]*>(.*?)<\/span>/i
+          ];
+          
+          for (const pattern of altPatterns) {
+            const match = pattern.exec(html);
+            if (match && match[1] && match[1].trim().length > 20) {
+              description = match[1];
+              break;
+            }
+          }
+        }
+        
+        // Clean up HTML tags and decode entities
+        description = description
+          .replace(/<[^>]*>/g, '') // Remove HTML tags
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&nbsp;/g, ' ')
+          .replace(/\s+/g, ' ') // Replace multiple spaces with single space
+          .trim();
+      }
+      
+      // If still no description, create a generic one based on title
+      if (!description || description.length < 10) {
+        const title = items[i].title || "This article";
+        description = `Explore ${title.toLowerCase()} and discover valuable insights, technical knowledge, and practical solutions in this comprehensive Medium article.`;
+      }
+      
+      
+      // Limit description length - show more of the first paragraph
+      if (description.length > 300) {
+        // Find a good breaking point (end of sentence or word)
+        let truncated = description.substring(0, 300);
+        const lastSentence = truncated.lastIndexOf('.');
+        const lastWord = truncated.lastIndexOf(' ');
+        
+        if (lastSentence > 200) {
+          description = truncated.substring(0, lastSentence + 1);
+        } else if (lastWord > 150) {
+          description = truncated.substring(0, lastWord) + "...";
+        } else {
+          description = truncated + "...";
+        }
+      }
+      
+      blogDescription.innerHTML = description;
+      
+      // Create tags container
+      const tagsContainer = document.createElement("div");
+      tagsContainer.className = "tech-stack";
+      
+      // Add category tags
       for (const category of items[i].categories) {
-        const span = document.createElement("span");
-        span.className = "badge badge-secondary";
-        span.innerHTML = category;
-        divSpan.append(span);
+        const tag = document.createElement("span");
+        tag.className = "tech-tag";
+        tag.innerHTML = category;
+        tagsContainer.append(tag);
       }
-  
-      const divSubHeading = document.createElement("div");
-      divSubHeading.className = "sub-heading";
-      divSubHeading.append(p, divSpan);
-      divResumeContentRight.append(divSubHeading);
-  
-      const divResumeItem = document.createElement("div");
-      divResumeItem.className = "resume-item";
-      divResumeItem.append(divResumeContentRight);
-      a.append(divResumeItem);
-  
-      const divProjectCard = document.createElement("div");
-      divProjectCard.className = "project-card";
-      divProjectCard.append(a);
-  
+      
+      // Assemble the blog content
+      blogContent.append(blogTitle);
+      blogContent.append(pubDateEle);
+      blogContent.append(blogDescription);
+      blogContent.append(tagsContainer);
+      
+      
+      // Assemble the blog card
+      blogCard.append(blogContent);
+      
+      // Create list item and append
       const li = document.createElement("li");
-      li.append(divProjectCard);
+      li.append(blogCard);
       projectdesign.append(li);
-  
-      if (i !== count - 1) {
-        projectdesign.append(document.createElement("hr"));
-      }
     }
   }
   
@@ -476,19 +724,6 @@ skillLinks.forEach(link => {
 
         mainContainer.append(article);
     }
-
-    let divTimelineIcon = document.createElement("div");
-    divTimelineIcon.className = "timeline-icon color-2";
-
-    let divTimelineEntryInner = document.createElement("div");
-    divTimelineEntryInner.className = "timeline-entry-inner";
-    divTimelineEntryInner.append(divTimelineIcon);
-
-    let article = document.createElement("article");
-    article.className = "timeline-entry begin animate-box";
-    article.append(divTimelineEntryInner);
-
-    mainContainer.append(article);
 }
 
   
@@ -512,6 +747,7 @@ skillLinks.forEach(link => {
         spanTimelineSublabel.innerHTML = items[i].subtitle;
 
         let spanh2 = document.createElement("span");
+        spanh2.className = "timeline-duration";
         spanh2.innerHTML = items[i].duration;
 
         // Create a wrapper for subtitle and duration
@@ -531,7 +767,7 @@ skillLinks.forEach(link => {
         for (let j = 0; j < items[i].details.length; j++) {
             let pTimelineText = document.createElement("p");
             pTimelineText.className = "timeline-text";
-            pTimelineText.innerHTML = "&blacksquare; " + items[i].details[j];
+            pTimelineText.innerHTML = items[i].details[j]; // Remove the bullet point as we're using CSS ::before
             divTimelineLabel.append(pTimelineText);
         }
 
@@ -559,6 +795,12 @@ skillLinks.forEach(link => {
         let article = document.createElement("article");
         article.className = "timeline-entry animate-box";
         article.append(divTimelineEntryInner);
+
+        // Add click event for interactive timeline entries
+        article.addEventListener('click', function() {
+            // Toggle a 'selected' class for visual feedback
+            this.classList.toggle('selected');
+        });
 
         mainContainer.append(article);
     }
@@ -701,13 +943,49 @@ skillLinks.forEach(link => {
   
   populateSkills(skills, "skills");
   
-  fetchBlogsFromMedium(medium);
+  // Initialize skill filtering after skills are populated
+  setTimeout(() => {
+    initializeSkillFiltering();
+  }, 100);
+  
+  // Try to fetch blogs from Medium, with fallback
+  fetchBlogsFromMedium(medium).catch(() => {
+    // Fallback: Show sample blog data for testing
+    const sampleBlogs = [
+      {
+        title: "Getting Started with AI and Machine Learning",
+        link: "https://medium.com/@razgaleh/sample-blog-1",
+        pubDate: new Date().toISOString(),
+        content: "<p>Artificial Intelligence and Machine Learning are transforming industries across the globe at an unprecedented pace. From healthcare and finance to transportation and entertainment, these technologies are reshaping how we work, live, and interact with the world around us. In this comprehensive guide, we'll explore the fundamentals of AI/ML, practical applications across various sectors, and emerging trends that are shaping the future of technology. Whether you're a complete beginner or looking to deepen your understanding, this article will provide valuable insights into the fascinating world of artificial intelligence.</p>",
+        categories: ["AI", "Machine Learning", "Technology"]
+      },
+      {
+        title: "Building Scalable Web Applications with Modern Frameworks",
+        link: "https://medium.com/@razgaleh/sample-blog-2", 
+        pubDate: new Date(Date.now() - 86400000).toISOString(),
+        content: "<p>In today's fast-paced digital landscape, building web applications that can handle millions of users while maintaining performance and reliability is crucial for success. Modern JavaScript frameworks like React, Vue.js, and Angular have revolutionized the way we approach frontend development, offering powerful tools and patterns that make it easier to create complex, interactive user interfaces. This comprehensive guide will walk you through the essential concepts, best practices, and advanced techniques needed to build scalable web applications that can grow with your business needs.</p>",
+        categories: ["Web Development", "JavaScript", "Frameworks"]
+      },
+      {
+        title: "Data Science and Analytics: A Complete Guide",
+        link: "https://medium.com/@razgaleh/sample-blog-3",
+        pubDate: new Date(Date.now() - 172800000).toISOString(),
+        content: "<p>Data has become the new oil of the digital economy, and organizations that can effectively collect, analyze, and derive insights from their data are gaining significant competitive advantages. Data science combines statistical analysis, machine learning, and domain expertise to extract meaningful patterns and predictions from complex datasets. In this comprehensive guide, we'll explore the entire data science pipeline, from data collection and cleaning to advanced modeling and visualization techniques that help businesses make data-driven decisions.</p>",
+        categories: ["Data Science", "Analytics", "Python"]
+      }
+    ];
+    populateBlogs(sampleBlogs, "blogs");
+  });
+  
   fetchGitConnectedData(gitConnected);
   
-  populateProjects(mlaiProjects, "ml-ai-projects");
-  populateProjects(webProjects, "web-projects");
-  populateProjects(softwareProjects, "software-projects");
-  populateProjects(physicsProjects, "physics-projects");
+  populateProjects(mlaiProjects, "ml-ai-projects", "ai");
+  populateProjects(webProjects, "web-projects-container", "web");
+  populateProjects(softwareProjects, "software-projects-container", "software");
+  populateProjects(physicsProjects, "physics-projects-container", "physics");
+  
+  // Initialize project filtering
+  initializeProjectFilters();
   
   populateCert(certs, "certs");
   populateExp_Edu(experience, "experience");
