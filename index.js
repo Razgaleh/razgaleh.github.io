@@ -805,19 +805,6 @@ skillLinks.forEach(link => {
         mainContainer.append(article);
     }
 
-    // Add an empty entry at the end
-    let divTimelineIcon = document.createElement("div");
-    divTimelineIcon.className = "timeline-icon color-2";
-
-    let divTimelineEntryInner = document.createElement("div");
-    divTimelineEntryInner.className = "timeline-entry-inner";
-    divTimelineEntryInner.append(divTimelineIcon);
-
-    let article = document.createElement("article");
-    article.className = "timeline-entry begin animate-box";
-    article.append(divTimelineEntryInner);
-
-    mainContainer.append(article);
 }
 
   
